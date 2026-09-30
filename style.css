@@ -1,0 +1,427 @@
+:root {
+  --primary-red: #a61c24;
+  --deep-sumi: #181514;
+  --charcoal: #2c2724;
+  --washi-bg: #f7f3ec;
+  --border-wood: #dfd7ca;
+  --gold: #b38b4d;
+  --text-sub: #5e574f;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Zen Old Mincho', 'Shippori Mincho', serif;
+  background-color: var(--washi-bg);
+  color: var(--deep-sumi);
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  word-break: break-word;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ヘッダー */
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(247, 243, 236, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-wood);
+  z-index: 1000;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.brand-logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.global-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 10px 0;
+  display: inline-block;
+  color: var(--deep-sumi);
+}
+
+.nav-link:hover {
+  color: var(--primary-red);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid var(--border-wood);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  min-width: 180px;
+  list-style: none;
+  border-radius: 4px;
+  padding: 8px 0;
+}
+
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 18px;
+  font-size: 0.88rem;
+  color: var(--charcoal);
+}
+
+.dropdown-menu a:hover {
+  background: #faf6f0;
+  color: var(--primary-red);
+}
+
+.header-cta-btn {
+  background: var(--primary-red);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--deep-sumi);
+}
+
+/* 下層ページ共通ヘッダービジュアル */
+/* 下層ページ共通ヘッダービジュアル（背景画像＋オーバーレイ対応） */
+.page-header-banner {
+  position: relative;
+  background-color: #181514;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  padding: 80px 0;
+  text-align: center;
+  border-bottom: 3px solid var(--gold);
+  overflow: hidden;
+}
+
+/* 背景を暗くして文字をくっきり見せるオーバーレイ */
+.page-header-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55); /* 写真の明るさに応じて 0.4〜0.7 で調整可能 */
+  z-index: 1;
+}
+
+/* 文字をオーバーレイの上に表示 */
+.page-header-banner .container {
+  position: relative;
+  z-index: 2;
+}
+
+.page-header-sub {
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.page-header-title {
+  font-size: 2.4rem;
+  font-family: 'Shippori Mincho', serif;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+/* 下層タブ切り替えバー（大和田建設様風） */
+.category-tab-container {
+  background: #fff;
+  border-bottom: 1px solid var(--border-wood);
+  padding: 18px 0;
+  margin-bottom: 40px;
+}
+
+.category-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.tab-btn {
+  padding: 12px 32px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-wood);
+  background: #faf8f4;
+  color: var(--deep-sumi);
+}
+
+.tab-btn.active {
+  background: var(--primary-red);
+  color: #fff;
+  border-color: var(--primary-red);
+}
+
+/* 建材・工賃カード共通 */
+.material-card, .labor-block {
+  background: #fff;
+  border: 1px solid var(--border-wood);
+  border-radius: 6px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+}
+
+.mat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-bottom: 1px dashed #e8dfd3;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.mat-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--deep-sumi);
+}
+
+.mat-price-tag {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary-red);
+}
+
+.mat-thumb-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--border-wood);
+  margin-bottom: 14px;
+}
+
+.mat-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.mat-grade-badge {
+  background: #eee4d5;
+  color: var(--deep-sumi);
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.labor-sub-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #faf8f4;
+  border: 1px solid #ede4d5;
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+}
+
+.labor-sub-price {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary-red);
+}
+
+/* フッター */
+footer {
+  background: #252220;
+  color: #eae5de;
+  padding: 70px 0 24px;
+  margin-top: 80px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.footer-brand h4 {
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 10px;
+  font-family: 'Shippori Mincho', serif;
+}
+
+.footer-address {
+  font-style: normal;
+  font-size: 0.88rem;
+  line-height: 2;
+  color: #b0a9a2;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 40px;
+}
+
+.footer-nav-col h5 {
+  color: #fff;
+  font-size: 0.92rem;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 4px;
+}
+
+.footer-nav-col ul {
+  list-style: none;
+}
+
+.footer-nav-col li {
+  margin-bottom: 8px;
+}
+
+.footer-nav-col a {
+  font-size: 0.85rem;
+  color: #b0a9a2;
+}
+
+.footer-nav-col a:hover {
+  color: #fff;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #777;
+  border-top: 1px solid #383431;
+  padding-top: 20px;
+}
+
+@media (max-width: 900px) {
+  .menu-toggle { display: block; }
+  .global-nav {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid var(--border-wood);
+    flex-direction: column;
+    padding: 20px;
+  }
+  .global-nav.active { display: flex; }
+  .nav-list { flex-direction: column; width: 100%; gap: 0; }
+  .nav-item { width: 100%; border-bottom: 1px solid #eee; }
+  .dropdown-menu { position: static; box-shadow: none; border: none; background: #faf8f4; display: block; padding-left: 20px; }
+  .category-tabs { flex-direction: column; gap: 8px; }
+  .tab-btn { text-align: center; }
+  .labor-sub-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+
+/* 見積り・採用カードの枠全体 */
+.feature-banner-box {
+  padding: 0 !important;
+  background: #fff;
+  border: 1px solid var(--border-wood);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 画像を囲む枠の高さ（施工案内の260pxより控えめな160pxに固定） */
+.banner-img-wrap {
+  width: 100%;
+  height: 160px !important;  /* ← ここで高さをグッと抑えます（140px〜180pxでお好み調整可） */
+  overflow: hidden;
+  background-color: #faf6f0;
+}
+
+/* 画像自体のサイズ指定（縦横比を崩さず枠いっぱいにトリミング） */
+.banner-photo {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;     /* 元画像のサイズに関わらず枠にきれいにフィット */
+  object-position: center !important; /* 中央を中心にトリミング */
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.feature-banner-box:hover .banner-photo {
+  transform: scale(1.04);
+}
+
+/* テキスト部分の余白を少し整える */
+.banner-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}

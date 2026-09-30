@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>壁紙建材一覧 | 朝陽 - ASAHI</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* 2枚並び画像ギャラリー用スタイル */
+    .wallpaper-img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .wallpaper-img-box {
+      background: #faf8f4;
+      border: 1px solid var(--border-wood);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wallpaper-photo {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .wallpaper-photo:hover {
+      transform: scale(1.03);
+    }
+
+    .wallpaper-img-label {
+      font-size: 0.78rem;
+      color: var(--text-sub);
+      text-align: center;
+      padding: 6px 4px;
+      background: #f7f3ec;
+      border-top: 1px solid #ebe2d5;
+      font-weight: 600;
+    }
+
+    /* 提携先カタログ案内ボックス */
+    .partner-catalog-box {
+      background: #fff;
+      border: 1px solid var(--border-wood);
+      border-left: 5px solid var(--gold);
+      border-radius: 6px;
+      padding: 32px 28px;
+      margin: 48px 0 60px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    }
+
+    .partner-catalog-btn {
+      display: inline-block;
+      background: var(--primary-red);
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+      margin-top: 14px;
+    }
+
+    .partner-catalog-btn:hover {
+      opacity: 0.88;
+    }
+
+    @media (max-width: 600px) {
+      .wallpaper-img-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .wallpaper-photo {
+        height: 180px;
+      }
+      .partner-catalog-box {
+        padding: 24px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header>
+    <div class="container header-inner">
+      <a href="../index.html">
+        <img src="../image/home/logo.png" alt="朝陽 ASAHI" class="brand-logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'48\'><text x=\'10\' y=\'32\' font-size=\'24\' font-family=\'serif\' fill=\'%23181514\'>朝陽</text></svg>'">
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="メニュー開閉">☰</button>
+      <nav class="global-nav" id="globalNav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="../about.html" class="nav-link">会社概要</a></li>
+          <li class="nav-item">
+            <a href="../flooring/materials.html" class="nav-link">フローリング ▾</a>
+            <ul class="dropdown-menu">
+              <li><a href="../flooring/materials.html">フローリング建材</a></li>
+              <li><a href="../flooring/service.html">フローリング施工案内</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="materials.html" class="nav-link">壁紙リフォーム ▾</a>
+            <ul class="dropdown-menu">
+              <li><a href="materials.html">壁紙建材</a></li>
+              <li><a href="service.html">壁紙施工案内</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="../estimate.html" class="nav-link">概算見積り</a></li>
+          <li class="nav-item"><a href="../recruit.html" class="nav-link">採用情報</a></li>
+        </ul>
+        <a href="../contact.html" class="header-cta-btn">お問い合わせ・LINE</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ページ見出しバナー -->
+  <div class="page-header-banner" style="background-image: url('../image/home/wallpaper.jpg');">
+    <div class="container">
+      <p class="page-header-sub">WALLPAPER MATERIALS</p>
+      <h1 class="page-header-title">壁紙建材一覧</h1>
+    </div>
+  </div>
+
+  <!-- タブ切り替えボタン -->
+  <div class="category-tab-container">
+    <div class="container">
+      <div class="category-tabs">
+        <a href="materials.html" class="tab-btn active">壁紙建材一覧</a>
+        <a href="service.html" class="tab-btn">壁紙施工案内</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <main class="container" style="padding-top: 20px;">
+    
+    <!-- 案内インフォメーション -->
+    <div style="background: #faf8f4; border: 1px solid var(--border-wood); border-radius: 6px; padding: 20px 24px; margin-bottom: 36px;">
+      <h2 style="font-size: 1.35rem; color: var(--deep-sumi); margin-bottom: 8px;">標準壁紙（クロス）各種</h2>
+      <p style="color: var(--charcoal); font-size: 0.95rem; line-height: 1.8;">
+        お部屋の用途やお好みのテイストに合わせてお選びいただける人気定番クロスを取り揃えています。<br>
+        テクスチャの風合い（アップ）と全体のパターンが分かりやすいよう、各品番2枚ずつの見本画像を掲載しております。<br>
+        下記の代表品番のほか、お客様の空間イメージに合わせて多彩な提携カタログからも自由にお選びいただけます。
+      </p>
+    </div>
+
+    <!-- 壁紙一覧カード群（品番昇順） -->
+    <section style="margin-bottom: 30px;">
+      
+      <!-- 1. SLP-345（石目調） -->
+      <div class="material-card">
+        <div class="mat-header">
+          <span class="mat-name">品番：SLP-345（石目調）</span>
+          <span class="mat-price-tag">¥660 / ㎡ <small style="font-size:0.8rem; color:#666;">(税込 / 税抜 ¥600)</small></span>
+        </div>
+
+        <!-- 2枚画像グリッド -->
+        <div class="wallpaper-img-grid">
+          <div class="wallpaper-img-box">
+            <img src="../image/sizai/SLP-345-1.jpg" alt="壁紙品番 SLP-345 拡大見本" class="wallpaper-photo" onerror="this.src='../image/sizai/SLP-345.jpg';">
+            <div class="wallpaper-img-label">テクスチャ・表面見本</div>
+          </div>
+          <div class="wallpaper-img-box">
+            <img src="../image/sizai/SLP-345-2.jpg" alt="壁紙品番 SLP-345 パターン見本" class="wallpaper-photo" onerror="this.parentElement.style.display='none';">
+            <div class="wallpaper-img-label">織物パターン・全体見本</div>
+          </div>
+        </div>
+
+        <div class="mat-badge-row">
+          <span class="mat-grade-badge">柄・パターン：石目調</span>
+          <span class="mat-grade-badge">おすすめ用途：全室・廊下・天井全般</span>
+        </div>
+        <p style="color: var(--charcoal); font-size: 0.92rem; line-height: 1.9;">
+          清潔感あふれるホワイトカラーの織物調クロスです。主張しすぎない上品な織り目テクスチャが光をやさしく拡散させ、お部屋全体を明るく広々とした印象に仕上げます。どんな家具や床材にも調和する定番のベーシックモデルです。
+        </p>
+      </div>
+
+      <!-- 2. SP-2520（織物調） -->
+      <div class="material-card">
+        <div class="mat-header">
+          <span class="mat-name">品番：SP-2520（織物調）</span>
+          <span class="mat-price-tag">¥660 / ㎡ <small style="font-size:0.8rem; color:#666;">(税込 / 税抜 ¥600)</small></span>
+        </div>
+
+        <!-- 2枚画像グリッド -->
+        <div class="wallpaper-img-grid">
+          <div class="wallpaper-img-box">
+            <img src="../image/sizai/SP-2520-1.jpg" alt="壁紙品番 SP-2520 拡大見本" class="wallpaper-photo" onerror="this.src='../image/sizai/SP-2520.jpg';">
+            <div class="wallpaper-img-label">テクスチャ・表面見本</div>
+          </div>
+          <div class="wallpaper-img-box">
+            <img src="../image/sizai/SP-2520-2.jpg" alt="壁紙品番 SP-2520 パターン見本" class="wallpaper-photo" onerror="this.parentElement.style.display='none';">
+            <div class="wallpaper-img-label">塗り壁パターン・全体見本</div>
+          </div>
+        </div>
+
+        <div class="mat-badge-row">
+          <span class="mat-grade-badge">柄・パターン：織物調</span>
+          <span class="mat-grade-badge">おすすめ用途：リビング・玄関・洗面脱衣所</span>
+        </div>
+        <p style="color: var(--charcoal); font-size: 0.92rem; line-height: 1.9;">
+          職人が手作業で仕上げたような素朴で上質な石目・塗り壁調のクロスです。すっきりとした落ち着きとモダンな高級感があり、陰影の美しさが壁面に奥行きを生み出します。水まわりやエントランス空間にも最適です。
+        </p>
+      </div>
+
+      <!-- 3. SP-2569（木目調） -->
+      <div class="material-card">
+        <div class="mat-header">
+          <span class="mat-name">品番：SP-2569（木目調）</span>
+          <span class="mat-price-tag">¥660 / ㎡ <small style="font-size:0.8rem; color:#666;">(税込 / 税抜 ¥600)</small></span>
+        </div>
+
+        <!-- 2枚画像グリッド -->
+        <div class="wallpaper-img-grid">
+          <div class="wallpaper-img-box">
+            <img src="../image/sizai/SP-2569-1.jpg" alt="壁紙品番 SP-2569 拡大見本" class="wallpaper-photo" onerror="this.src='../image/sizai/SP-2569.jpg';">
+            <div class="wallpaper-img-label">テクスチャ・表面見本</div>
+          </div>
+          <div class="wallpaper-img-box">
+            <img src="../image/sizai/SP-2569-2.jpg" alt="壁紙品番 SP-2569 パターン見本" class="wallpaper-photo" onerror="this.parentElement.style.display='none';">
+            <div class="wallpaper-img-label">和紙パターン・全体見本</div>
+          </div>
+        </div>
+
+        <div class="mat-badge-row">
+          <span class="mat-grade-badge">柄・パターン：木目調</span>
+          <span class="mat-grade-badge">おすすめ用途：和室・畳スペース・床の間</span>
+        </div>
+        <p style="color: var(--charcoal); font-size: 0.92rem; line-height: 1.9;">
+          和紙の風合いを感じさせる繊細な繊維パターンを施した和モダンクロスです。吉野桧などの無垢フローリングや畳空間との相性が抜群で、落ち着きのある心安らぐ和の空間を演出します。
+        </p>
+      </div>
+
+      <!-- 4. SP-2605（木目調） -->
+      <div class="material-card">
+        <div class="mat-header">
+          <span class="mat-name">品番：SP-2605（木目調）</span>
+          <span class="mat-price-tag">¥660 / ㎡ <small style="font-size:0.8rem; color:#666;">(税込 / 税抜 ¥600)</small></span>
+        </div>
+
+        <!-- 2枚画像グリッド -->
+        <div class="wallpaper-img-grid">
+          <div class="wallpaper-img-box">
+            <img src="../image/sizai/SP-2605-1.jpg" alt="壁紙品番 SP-2605 拡大見本" class="wallpaper-photo" onerror="this.src='../image/sizai/SP-2605.jpg';">
+            <div class="wallpaper-img-label">テクスチャ・表面見本</div>
+          </div>
+          <div class="wallpaper-img-box">
+            <img src="../image/sizai/SP-2605-2.jpg" alt="壁紙品番 SP-2605 パターン見本" class="wallpaper-photo" onerror="this.parentElement.style.display='none';">
+            <div class="wallpaper-img-label">木目パターン・全体見本</div>
+          </div>
+        </div>
+
+        <div class="mat-badge-row">
+          <span class="mat-grade-badge">柄・パターン：木目調（ベージュ系）</span>
+          <span class="mat-grade-badge">おすすめ用途：リビング・寝室・アクセント壁</span>
+        </div>
+        <p style="color: var(--charcoal); font-size: 0.92rem; line-height: 1.9;">
+          ナチュラルな木目の表情を楽しめる、明るいベージュ系の木目調壁紙。<br>
+          細やかな木目がやさしく空間に馴染み、温かみのある雰囲気を演出します。<br>
+          ナチュラルテイストや北欧風のインテリアにも合わせやすい、使いやすいデザインです。
+        </p>
+      </div>
+
+    </section>
+
+    <!-- 提携先・指定カタログ案内エリア -->
+    <section class="partner-catalog-box">
+      <h3 style="font-size: 1.25rem; color: var(--deep-sumi); margin-bottom: 12px; font-weight: 700;">
+        提携先カタログから壁紙をお選びいただく場合
+      </h3>
+      <p style="color: var(--charcoal); font-size: 0.92rem; line-height: 1.85; margin-bottom: 6px;">
+        上記に掲載している4種類の標準壁紙のほかにも、お客様のお好みやお部屋の雰囲気に合わせた多彩な壁紙（防汚・消臭機能付きクロス、多彩な柄・カラーバリエーション等）をご用意可能です。<br>
+        別品番や特定メーカーのデザインをご希望の際は、以下の提携先WEBカタログよりご希望の品番をお選びいただき、お気軽にご相談ください。
+      </p>
+      <a href="https://share.google/v1Us0CsmagbnQxPYU" target="_blank" rel="noopener noreferrer" class="partner-catalog-btn">
+        提携先カタログを見る（外部サイト） →
+      </a>
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h4>朝陽 - ASAHI -</h4>
+          <address class="footer-address">
+            〒104-0061 東京都中央区銀座一丁目22番11号 銀座大竹ビジデンス2階<br>
+            TEL: 050-1784-2312 / 直通: 090-5806-5361<br>
+            MAIL: asahi.20241122@gmail.com
+          </address>
+        </div>
+        <div class="footer-nav">
+          <div class="footer-nav-col">
+            <h5>施工案内</h5>
+            <ul>
+              <li><a href="../flooring/materials.html">フローリング建材</a></li>
+              <li><a href="../flooring/service.html">フローリング施工案内</a></li>
+              <li><a href="materials.html">壁紙建材</a></li>
+              <li><a href="service.html">壁紙施工案内</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-col">
+            <h5>企業情報</h5>
+            <ul>
+              <li><a href="../about.html">会社概要・理念</a></li>
+              <li><a href="../estimate.html">概算見積り</a></li>
+              <li><a href="../recruit.html">採用情報</a></li>
+              <li><a href="../contact.html">お問い合わせ</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p class="copyright">&copy; 朝陽 ASAHI All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
