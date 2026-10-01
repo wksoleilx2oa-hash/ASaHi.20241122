@@ -425,3 +425,15 @@ footer {
   flex-direction: column;
   flex: 1;
 }
+
+/* --- 矢印の高さを一番下に揃える設定 --- */
+.feature-banner-box {
+  height: 100%; /* カードの高さを統一 */
+}
+
+/* カード内の最後の要素（矢印やボタンなど）を一番下に固定 */
+.banner-content > *:last-child,
+.banner-content .arrow-btn,
+.banner-content .banner-arrow {
+  margin-top: auto !important;
+}
