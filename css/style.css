@@ -469,3 +469,15 @@ footer {
     align-items: flex-start !important;
   }
 }
+
+
+/* --- スマホ版：ヘッダーナビの文字と矢印（▾）の表示調整 --- */
+@media (max-width: 900px) {
+  /* メニュー項目を横並びのFlexボックスにし、文字と矢印の配置を整える */
+  .nav-link {
+    display: flex !important;
+    justify-content: space-between !important; /* テキストを左、矢印を右端に配置 */
+    align-items: center !important;             /* 高さ（上下中央）を揃える */
+    width: 100%;
+  }
+}
