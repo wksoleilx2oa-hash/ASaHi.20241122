@@ -435,5 +435,26 @@ footer {
 .banner-content > *:last-child,
 .banner-content .arrow-btn,
 .banner-content .banner-arrow {
-  margin-top: auto !important;
+  margin-top: auto !important;}
+
+
+
+
+/* --- スマホ表示時に「文字の下」に「矢印」を配置する設定 --- */
+@media (max-width: 900px) {
+  /* 矢印が含まれるリンクまたはボタンを縦並び（column）にする */
+  .banner-content a,
+  .mat-header,
+  .labor-sub-item {
+    display: flex;
+    flex-direction: column; /* 要素を縦並び（文字が上、矢印が下）にする */
+    align-items: flex-start; /* 左寄せにする場合（右寄せなら flex-end） */
+    gap: 8px;               /* 文字と矢印の間の余白 */
+  }
+
+  /* 矢印要素自体を中央または指定の位置に置く場合 */
+  .banner-content .arrow,
+  .mat-header .arrow {
+    margin-top: 4px;
+  }
 }
