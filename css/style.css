@@ -490,3 +490,35 @@ footer {
     white-space: nowrap;            /* 文字と矢印の途中で改行させない */
   }
 }
+
+/* --- スマホ版：トップページ等のカード高さを固定し、矢印の位置を無理やり一番下に固定 --- */
+@media (max-width: 900px) {
+  /* 1. カード全体の高さを統一・固定 */
+  .feature-banner-box,
+  .material-card,
+  .labor-block {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important; /* 親要素の高さに合わせる */
+    min-height: 240px;       /* 最低限のカード高さを一律固定（必要に応じて調整可） */
+  }
+
+  /* 2. カード内のコンテンツエリアをフレックス化 */
+  .banner-content {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+  }
+
+  /* 3. 「壁紙施工案内 →」などの矢印付きリンク・ボタンを一番下に無理やり押し下げて固定 */
+  .banner-content a,
+  .banner-content .arrow,
+  .banner-content > *:last-child,
+  .feature-banner-box a:last-child {
+    margin-top: auto !important;  /* 上の余白を全自動計算して一番下へ固定 */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important; /* テキスト左、矢印右端に固定 */
+    width: 100% !important;
+  }
+}
