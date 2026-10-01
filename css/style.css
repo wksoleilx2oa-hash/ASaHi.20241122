@@ -522,3 +522,19 @@ footer {
     width: 100% !important;
   }
 }
+
+/* --- スマホ版：sub-btn内の文字と矢印の改行を防止して横並びに固定 --- */
+.sub-link-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* ボタン同士の上下間隔 */
+}
+
+.sub-btn {
+  display: flex !important;
+  justify-content: space-between !important; /* テキスト左、矢印右端に綺麗に配置 */
+  align-items: center !important;             /* 縦位置を中央に固定 */
+  white-space: nowrap !important;             /* ★途中で改行されるのを絶対に防ぐ */
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
