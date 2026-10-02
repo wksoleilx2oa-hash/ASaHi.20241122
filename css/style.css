@@ -524,15 +524,18 @@ footer {
   }
 }
 
-/* 「.addr-part」という名前がついた要素だけに適用される命令 */
-.addr-part {
+
+/* --- 会社概要テーブル：所在地住所の改行制御 --- */
+
+/* PCや画面幅が広い時は1行で横並び */
+.addr-part-3 {
   display: inline-block;
   margin-right: 8px;
 }
 
+/* スマホ表示時（768px以下）のみ3行（〒 / 住所 / ビル名）に分割改行 */
 @media (max-width: 768px) {
-  /* スマホの時も「.addr-part」がついた部分だけを縦並びに変更 */
-  .addr-part {
+  .addr-part-3 {
     display: block !important;
     margin-right: 0 !important;
     margin-bottom: 2px;
