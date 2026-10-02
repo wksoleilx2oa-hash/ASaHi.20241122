@@ -1,0 +1,545 @@
+:root {
+  --primary-red: #a61c24;
+  --deep-sumi: #181514;
+  --charcoal: #2c2724;
+  --washi-bg: #f7f3ec;
+  --border-wood: #dfd7ca;
+  --gold: #b38b4d;
+  --text-sub: #5e574f;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Zen Old Mincho', 'Shippori Mincho', serif;
+  background-color: var(--washi-bg);
+  color: var(--deep-sumi);
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  word-break: break-word;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ヘッダー */
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(247, 243, 236, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-wood);
+  z-index: 1000;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.brand-logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.global-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 10px 0;
+  display: inline-block;
+  color: var(--deep-sumi);
+}
+
+.nav-link:hover {
+  color: var(--primary-red);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid var(--border-wood);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  min-width: 180px;
+  list-style: none;
+  border-radius: 4px;
+  padding: 8px 0;
+}
+
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 18px;
+  font-size: 0.88rem;
+  color: var(--charcoal);
+}
+
+.dropdown-menu a:hover {
+  background: #faf6f0;
+  color: var(--primary-red);
+}
+
+.header-cta-btn {
+  background: var(--primary-red);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--deep-sumi);
+}
+
+/* 下層ページ共通ヘッダービジュアル（背景画像＋オーバーレイ対応） */
+.page-header-banner {
+  position: relative;
+  background-color: #181514;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  padding: 80px 0;
+  text-align: center;
+  border-bottom: 3px solid var(--gold);
+  overflow: hidden;
+}
+
+.page-header-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.page-header-banner .container {
+  position: relative;
+  z-index: 2;
+}
+
+.page-header-sub {
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.page-header-title {
+  font-size: 2.4rem;
+  font-family: 'Shippori Mincho', serif;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* 下層タブ切り替えバー */
+.category-tab-container {
+  background: #fff;
+  border-bottom: 1px solid var(--border-wood);
+  padding: 18px 0;
+  margin-bottom: 40px;
+}
+
+.category-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.tab-btn {
+  padding: 12px 32px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-wood);
+  background: #faf8f4;
+  color: var(--deep-sumi);
+}
+
+.tab-btn.active {
+  background: var(--primary-red);
+  color: #fff;
+  border-color: var(--primary-red);
+}
+
+/* 建材・工賃カード共通 */
+.material-card, .labor-block {
+  background: #fff;
+  border: 1px solid var(--border-wood);
+  border-radius: 6px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+}
+
+.mat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-bottom: 1px dashed #e8dfd3;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.mat-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--deep-sumi);
+}
+
+.mat-price-tag {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary-red);
+}
+
+.mat-thumb-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--border-wood);
+  margin-bottom: 14px;
+}
+
+.mat-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.mat-grade-badge {
+  background: #eee4d5;
+  color: var(--deep-sumi);
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.labor-sub-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #faf8f4;
+  border: 1px solid #ede4d5;
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+}
+
+.labor-sub-price {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary-red);
+}
+
+/* フッター */
+footer {
+  background: #252220;
+  color: #eae5de;
+  padding: 70px 0 24px;
+  margin-top: 80px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.footer-brand h4 {
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 10px;
+  font-family: 'Shippori Mincho', serif;
+}
+
+.footer-address {
+  font-style: normal;
+  font-size: 0.88rem;
+  line-height: 2;
+  color: #b0a9a2;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 40px;
+}
+
+.footer-nav-col h5 {
+  color: #fff;
+  font-size: 0.92rem;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 4px;
+}
+
+.footer-nav-col ul {
+  list-style: none;
+}
+
+.footer-nav-col li {
+  margin-bottom: 8px;
+}
+
+.footer-nav-col a {
+  font-size: 0.85rem;
+  color: #b0a9a2;
+}
+
+.footer-nav-col a:hover {
+  color: #fff;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #777;
+  border-top: 1px solid #383431;
+  padding-top: 20px;
+}
+
+/* 見積り・採用カードの枠全体 */
+.feature-banner-box {
+  padding: 0 !important;
+  background: #fff;
+  border: 1px solid var(--border-wood);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-img-wrap {
+  width: 100%;
+  height: 160px !important;
+  overflow: hidden;
+  background-color: #faf6f0;
+}
+
+.banner-photo {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.feature-banner-box:hover .banner-photo {
+  transform: scale(1.04);
+}
+
+.banner-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ===================================================
+   レスポンシブ共通（900px以下：スマホ・タブレット）
+   =================================================== */
+@media (max-width: 900px) {
+  .menu-toggle { display: block; }
+  
+  .global-nav {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid var(--border-wood);
+    flex-direction: column;
+    padding: 20px;
+  }
+  .global-nav.active { display: flex; }
+  
+  .nav-list { flex-direction: column; width: 100%; gap: 0; }
+  .nav-item { width: 100%; border-bottom: 1px solid #eee; }
+  
+  .nav-link {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  /* ドロップダウンのアコーディオン制御 */
+  .dropdown-menu {
+    display: none !important;
+    position: static !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #faf8f4 !important;
+    padding-left: 18px !important;
+    margin-top: 4px;
+  }
+
+  .nav-item.is-open .dropdown-menu {
+    display: block !important;
+  }
+
+  .category-tabs { flex-direction: column; gap: 8px; }
+  .tab-btn { text-align: center; }
+  .labor-sub-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+
+/* ===================================================
+   施工案内カード ボタン表示（PC/スマホ完全両対応）
+   =================================================== */
+
+/* グリッド外枠（左右2分割） */
+.service-btn-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+  width: 100% !important;
+  margin-top: 24px;
+}
+
+/* ボタン共通の基本スタイル（PC版：すっきり横並び枠） */
+.service-split-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px;
+  background: #faf8f4 !important;
+  border: 1px solid var(--border-wood) !important;
+  border-radius: 4px !important;
+  padding: 12px 14px !important;
+  text-decoration: none !important;
+  color: var(--deep-sumi) !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+}
+
+.service-split-btn:hover {
+  background: #f0ebe0 !important;
+}
+
+.service-split-btn .btn-text {
+  display: inline-block;
+  line-height: 1.3;
+}
+
+.service-split-btn .btn-arrow {
+  display: inline-block;
+  line-height: 1;
+  font-size: 0.95rem;
+}
+
+/* ---------------------------------------------------
+   ★ スマホ版（画面幅 600px 以下）のみに適用するレイアウト
+   --------------------------------------------------- */
+@media (max-width: 600px) {
+  .service-btn-grid {
+    gap: 8px !important;
+  }
+
+  .service-split-btn {
+    flex-direction: column !important;         /* 上下に並べる */
+    justify-content: space-between !important; /* 文字を上、矢印を下へ離す */
+    align-items: center !important;             /* 中央揃え */
+    padding: 14px 6px 10px !important;
+    min-height: 96px !important;               /* 左右の高さを一律揃える */
+    text-align: center !important;
+  }
+
+  .service-split-btn .btn-text {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .service-split-btn .btn-arrow {
+    margin-top: auto !important;               /* ★矢印を一番下の行に固定 */
+    padding-top: 4px;
+    font-size: 1.05rem !important;
+  }
+}
+
+/* --- 郵便番号・住所・ビル名の自動改行制御 --- */
+.footer-address {
+  line-height: 1.8;
+}
+
+/* 通常（PCなど幅に余裕がある時）はインラインブロックとして扱い、間隔を空ける */
+.addr-item {
+  display: inline-block;
+  margin-right: 8px; /* 要素同士の横の間隔 */
+}
+
+/* スマホ表示時（768px以下）：枠に入り切らない、またはスマホで見た時に自動で改行させる */
+@media (max-width: 768px) {
+  .addr-item {
+    display: block !important; /* ブロック化して「郵便番号」「住所」「ビル名」をそれぞれ別行（改行）にする */
+    margin-right: 0 !important;
+    margin-bottom: 2px;        /* 上下の間隔を微調整 */
+  }
+}
