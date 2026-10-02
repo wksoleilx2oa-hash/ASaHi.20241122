@@ -543,6 +543,79 @@
         grid-template-columns: 1fr;
       }
     }
+
+/* ===================================================
+       施工案内カード ボタン（PC/スマホ完全対応）
+       =================================================== */
+    .service-btn-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 12px !important;
+      width: 100% !important;
+      margin-top: 24px !important;
+    }
+
+    /* PC版：枠線付きの綺麗な横並びボタン */
+    .service-split-btn {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 6px !important;
+      background: #faf8f4 !important;
+      border: 1px solid var(--border-wood) !important;
+      border-radius: 4px !important;
+      padding: 12px 14px !important;
+      text-decoration: none !important;
+      color: var(--deep-sumi) !important;
+      font-size: 0.88rem !important;
+      font-weight: 700 !important;
+      box-sizing: border-box !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .service-split-btn:hover {
+      background: var(--primary-red) !important;
+      color: #fff !important;
+      border-color: var(--primary-red) !important;
+    }
+
+    .service-split-btn .btn-text {
+      display: inline-block;
+      line-height: 1.3;
+    }
+
+    .service-split-btn .btn-arrow {
+      display: inline-block;
+      line-height: 1;
+      font-size: 0.95rem;
+    }
+
+    /* スマホ版（600px以下）：文字の下に矢印を揃えて配置 */
+    @media (max-width: 600px) {
+      .service-btn-grid {
+        gap: 8px !important;
+      }
+
+      .service-split-btn {
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 12px 6px 10px !important;
+        min-height: 96px !important;
+        text-align: center !important;
+      }
+
+      .service-split-btn .btn-text {
+        font-size: 0.82rem !important;
+        line-height: 1.4 !important;
+      }
+
+      .service-split-btn .btn-arrow {
+        margin-top: auto !important;
+        padding-top: 4px;
+        font-size: 1.05rem !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -670,10 +743,16 @@
               </p>
             </div>
             <!-- 下層ページへのタブ切替導線 -->
-            <div class="sub-link-group">
-              <a href="flooring/materials.html" class="sub-btn">フローリング建材 →</a>
-              <a href="flooring/service.html" class="sub-btn">フローリング施工案内 →</a>
-            </div>
+          <div class="service-btn-grid">
+          <a href="flooring/materials.html" class="service-split-btn">
+            <span class="btn-text">フローリング建材</span>
+            <span class="btn-arrow">→</span>
+          </a>
+          <a href="flooring/service.html" class="service-split-btn">
+            <span class="btn-text">フローリング施工案内</span>
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
           </div>
         </article>
 
@@ -688,10 +767,16 @@
               </p>
             </div>
             <!-- 下層ページへのタブ切替導線 -->
-            <div class="sub-link-group">
-              <a href="wallpaper/materials.html" class="sub-btn">壁紙建材 →</a>
-              <a href="wallpaper/service.html" class="sub-btn">壁紙施工案内 →</a>
-            </div>
+            <div class="service-btn-grid">
+          <a href="wallpaper/materials.html" class="service-split-btn">
+            <span class="btn-text">壁紙建材</span>
+            <span class="btn-arrow">→</span>
+          </a>
+          <a href="wallpaper/service.html" class="service-split-btn">
+            <span class="btn-text">壁紙施工案内</span>
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
           </div>
         </article>
       </div>

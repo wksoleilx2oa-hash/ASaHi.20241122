@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* 外枠カード */
+  /* 外枠カード（修正版） */
     .contact-card {
       background: #fff;
       border: 1px solid var(--border-wood);
@@ -16,8 +16,16 @@
       max-width: 980px;
       margin: 0 auto 60px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      box-sizing: border-box; /* はみ出し防止 */
+      width: 100%;
     }
 
+    @media (max-width: 768px) {
+      .contact-card {
+        padding: 24px 16px !important; /* スマホ時は余白をコンパクトに */
+        margin: 0 auto 40px !important;
+      }
+    }
     /* 各入力行 */
     .form-group {
       margin-bottom: 24px;

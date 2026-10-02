@@ -141,7 +141,6 @@ header {
   color: var(--deep-sumi);
 }
 
-/* 下層ページ共通ヘッダービジュアル */
 /* 下層ページ共通ヘッダービジュアル（背景画像＋オーバーレイ対応） */
 .page-header-banner {
   position: relative;
@@ -156,7 +155,6 @@ header {
   overflow: hidden;
 }
 
-/* 背景を暗くして文字をくっきり見せるオーバーレイ */
 .page-header-banner::before {
   content: "";
   position: absolute;
@@ -164,11 +162,10 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.55); /* 写真の明るさに応じて 0.4〜0.7 で調整可能 */
+  background: rgba(0, 0, 0, 0.55);
   z-index: 1;
 }
 
-/* 文字をオーバーレイの上に表示 */
 .page-header-banner .container {
   position: relative;
   z-index: 2;
@@ -188,7 +185,8 @@ header {
   font-family: 'Shippori Mincho', serif;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
-/* 下層タブ切り替えバー（大和田建設様風） */
+
+/* 下層タブ切り替えバー */
 .category-tab-container {
   background: #fff;
   border-bottom: 1px solid var(--border-wood);
@@ -363,8 +361,50 @@ footer {
   padding-top: 20px;
 }
 
+/* 見積り・採用カードの枠全体 */
+.feature-banner-box {
+  padding: 0 !important;
+  background: #fff;
+  border: 1px solid var(--border-wood);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-img-wrap {
+  width: 100%;
+  height: 160px !important;
+  overflow: hidden;
+  background-color: #faf6f0;
+}
+
+.banner-photo {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.feature-banner-box:hover .banner-photo {
+  transform: scale(1.04);
+}
+
+.banner-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ===================================================
+   レスポンシブ共通（900px以下：スマホ・タブレット）
+   =================================================== */
 @media (max-width: 900px) {
   .menu-toggle { display: block; }
+  
   .global-nav {
     display: none;
     position: absolute;
@@ -377,164 +417,109 @@ footer {
     padding: 20px;
   }
   .global-nav.active { display: flex; }
+  
   .nav-list { flex-direction: column; width: 100%; gap: 0; }
   .nav-item { width: 100%; border-bottom: 1px solid #eee; }
-  .dropdown-menu { position: static; box-shadow: none; border: none; background: #faf8f4; display: block; padding-left: 20px; }
+  
+  .nav-link {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  /* ドロップダウンのアコーディオン制御 */
+  .dropdown-menu {
+    display: none !important;
+    position: static !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #faf8f4 !important;
+    padding-left: 18px !important;
+    margin-top: 4px;
+  }
+
+  .nav-item.is-open .dropdown-menu {
+    display: block !important;
+  }
+
   .category-tabs { flex-direction: column; gap: 8px; }
   .tab-btn { text-align: center; }
   .labor-sub-item { flex-direction: column; align-items: flex-start; gap: 8px; }
 }
 
-/* 見積り・採用カードの枠全体 */
-.feature-banner-box {
-  padding: 0 !important;
-  background: #fff;
-  border: 1px solid var(--border-wood);
-  border-radius: 6px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
+/* ===================================================
+   施工案内カード ボタン表示（PC/スマホ完全両対応）
+   =================================================== */
 
-/* 画像を囲む枠の高さ（施工案内の260pxより控えめな160pxに固定） */
-.banner-img-wrap {
-  width: 100%;
-  height: 160px !important;  /* ← ここで高さをグッと抑えます（140px〜180pxでお好み調整可） */
-  overflow: hidden;
-  background-color: #faf6f0;
-}
-
-/* 画像自体のサイズ指定（縦横比を崩さず枠いっぱいにトリミング） */
-.banner-photo {
+/* グリッド外枠（左右2分割） */
+.service-btn-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
   width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;     /* 元画像のサイズに関わらず枠にきれいにフィット */
-  object-position: center !important; /* 中央を中心にトリミング */
-  display: block;
-  transition: transform 0.4s ease;
+  margin-top: 24px;
 }
 
-.feature-banner-box:hover .banner-photo {
-  transform: scale(1.04);
-}
-
-/* テキスト部分の余白を少し整える */
-.banner-content {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-/* --- 矢印の高さを一番下に揃える設定 --- */
-.feature-banner-box {
-  height: 100%; /* カードの高さを統一 */
-}
-
-/* カード内の最後の要素（矢印やボタンなど）を一番下に固定 */
-.banner-content > *:last-child,
-.banner-content .arrow-btn,
-.banner-content .banner-arrow {
-  margin-top: auto !important;}
-
-
-
-
-/* --- カード全体の高さを揃えて矢印を一番下に固定する補正 --- */
-
-/* 1. カード全体の表示をFlex縦並びにする */
-.material-card, 
-.labor-block, 
-.feature-banner-box {
+/* ボタン共通の基本スタイル（PC版：すっきり横並び枠） */
+.service-split-btn {
   display: flex !important;
-  flex-direction: column !important;
-  height: 100% !important;
-}
-
-/* 2. カード内のリンクやボタン、矢印要素（最後の要素）を一番下に押し下げる */
-.material-card > *:last-child,
-.labor-block > *:last-child,
-.feature-banner-box > *:last-child,
-.banner-content > *:last-child {
-  margin-top: auto !important;
-}
-
-/* 3. スマホ表示時（900px以下）に文字と矢印を縦並びにする */
-@media (max-width: 900px) {
-  .material-card a,
-  .mat-header,
-  .banner-content a {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-  }
-}
-
-
-/* --- スマホ版：ヘッダーナビの文字と矢印（▾）の表示調整 --- */
-@media (max-width: 900px) {
-  /* メニュー項目を横並びのFlexボックスにし、文字と矢印の配置を整える */
-  .nav-link {
-    display: flex !important;
-    justify-content: space-between !important; /* テキストを左、矢印を右端に配置 */
-    align-items: center !important;             /* 高さ（上下中央）を揃える */
-    width: 100%;
-  }
-}
-
-@media (max-width: 900px) {
-  .nav-link {
-    display: inline-flex !important;
-    align-items: center !important; /* 上下中央揃え */
-    gap: 4px;                       /* 文字と矢印の間の余白 */
-    white-space: nowrap;            /* 文字と矢印の途中で改行させない */
-  }
-}
-
-/* --- スマホ版：トップページ等のカード高さを固定し、矢印の位置を無理やり一番下に固定 --- */
-@media (max-width: 900px) {
-  /* 1. カード全体の高さを統一・固定 */
-  .feature-banner-box,
-  .material-card,
-  .labor-block {
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100% !important; /* 親要素の高さに合わせる */
-    min-height: 240px;       /* 最低限のカード高さを一律固定（必要に応じて調整可） */
-  }
-
-  /* 2. カード内のコンテンツエリアをフレックス化 */
-  .banner-content {
-    display: flex !important;
-    flex-direction: column !important;
-    flex: 1 !important;
-  }
-
-  /* 3. 「壁紙施工案内 →」などの矢印付きリンク・ボタンを一番下に無理やり押し下げて固定 */
-  .banner-content a,
-  .banner-content .arrow,
-  .banner-content > *:last-child,
-  .feature-banner-box a:last-child {
-    margin-top: auto !important;  /* 上の余白を全自動計算して一番下へ固定 */
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important; /* テキスト左、矢印右端に固定 */
-    width: 100% !important;
-  }
-}
-
-/* --- スマホ版：sub-btn内の文字と矢印の改行を防止して横並びに固定 --- */
-.sub-link-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* ボタン同士の上下間隔 */
-}
-
-.sub-btn {
-  display: flex !important;
-  justify-content: space-between !important; /* テキスト左、矢印右端に綺麗に配置 */
-  align-items: center !important;             /* 縦位置を中央に固定 */
-  white-space: nowrap !important;             /* ★途中で改行されるのを絶対に防ぐ */
-  width: 100% !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px;
+  background: #faf8f4 !important;
+  border: 1px solid var(--border-wood) !important;
+  border-radius: 4px !important;
+  padding: 12px 14px !important;
+  text-decoration: none !important;
+  color: var(--deep-sumi) !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
   box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+}
+
+.service-split-btn:hover {
+  background: #f0ebe0 !important;
+}
+
+.service-split-btn .btn-text {
+  display: inline-block;
+  line-height: 1.3;
+}
+
+.service-split-btn .btn-arrow {
+  display: inline-block;
+  line-height: 1;
+  font-size: 0.95rem;
+}
+
+/* ---------------------------------------------------
+   ★ スマホ版（画面幅 600px 以下）のみに適用するレイアウト
+   --------------------------------------------------- */
+@media (max-width: 600px) {
+  .service-btn-grid {
+    gap: 8px !important;
+  }
+
+  .service-split-btn {
+    flex-direction: column !important;         /* 上下に並べる */
+    justify-content: space-between !important; /* 文字を上、矢印を下へ離す */
+    align-items: center !important;             /* 中央揃え */
+    padding: 14px 6px 10px !important;
+    min-height: 96px !important;               /* 左右の高さを一律揃える */
+    text-align: center !important;
+  }
+
+  .service-split-btn .btn-text {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .service-split-btn .btn-arrow {
+    margin-top: auto !important;               /* ★矢印を一番下の行に固定 */
+    padding-top: 4px;
+    font-size: 1.05rem !important;
+  }
 }
