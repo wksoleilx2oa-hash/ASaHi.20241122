@@ -361,7 +361,9 @@ footer {
   padding-top: 20px;
 }
 
-/* 見積り・採用カードの枠全体 */
+/* ---------------------------------------------------
+   見積り・採用カードの枠全体（レスポンシブ最適化）
+   --------------------------------------------------- */
 .feature-banner-box {
   padding: 0 !important;
   background: #fff;
@@ -374,7 +376,7 @@ footer {
 
 .banner-img-wrap {
   width: 100%;
-  height: 160px !important;
+  aspect-ratio: 16 / 9;                   /* 画像のアスペクト比を固定して崩れ防止 */
   overflow: hidden;
   background-color: #faf6f0;
 }
@@ -489,41 +491,42 @@ footer {
   line-height: 1.3;
 }
 
-.service-split-btn .btn-arrow {
-  display: inline-block;
-  line-height: 1;
-  font-size: 0.95rem;
-}
-
 /* ---------------------------------------------------
-   ★ スマホ版（画面幅 600px 以下）のみに適用するレイアウト
+   ★ スマホ版（画面幅 600px 以下）余白・自動高さ・カード幅完全調整
    --------------------------------------------------- */
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
   .service-btn-grid {
     gap: 8px !important;
   }
 
+  /* 「壁紙建材」「壁紙施工案内」などのボタンの余白解除 */
+  .service-btn-grid a.service-split-btn,
   .service-split-btn {
-    flex-direction: column !important;         /* 上下に並べる */
-    justify-content: space-between !important; /* 文字を上、矢印を下へ離す */
-    align-items: center !important;             /* 中央揃え */
-    padding: 14px 6px 10px !important;
-    min-height: 96px !important;               /* 左右の高さを一律揃える */
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: auto !important;
+    min-height: 0 !important;              /* 高さを0リセットして文字領域に合わせる */
+    max-height: none !important;
+    padding: 12px 6px !important;          /* パディングで余白を最小限に制御 */
     text-align: center !important;
   }
 
   .service-split-btn .btn-text {
-    font-size: 0.82rem !important;
-    line-height: 1.4 !important;
+    font-size: 0.85rem !important;
+    line-height: 1.3 !important;
   }
 
   .service-split-btn .btn-arrow {
-    margin-top: auto !important;               /* ★矢印を一番下の行に固定 */
-    padding-top: 4px;
-    font-size: 1.05rem !important;
+    display: none !important;
+  }
+
+  /* 「施工見積り」「採用情報」カードの内部余白を最適化 */
+  .banner-content {
+    padding: 16px !important;
   }
 }
-
 
 /* --- 会社概要テーブル：所在地住所の改行制御 --- */
 

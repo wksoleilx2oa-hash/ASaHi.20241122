@@ -330,32 +330,6 @@
       margin-bottom: 24px;
     }
 
-    /* サブリンクボタングループ */
-    .sub-link-group {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: auto;
-    }
-
-    .sub-btn {
-      display: block;
-      text-align: center;
-      padding: 12px 14px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      border: 1px solid var(--border-wood);
-      border-radius: 4px;
-      background: #faf8f4;
-      color: var(--deep-sumi);
-    }
-
-    .sub-btn:hover {
-      background: var(--primary-red);
-      color: #fff;
-      border-color: var(--primary-red);
-    }
-
     /* 4. 見積もり＆採用バナーグリッド */
     .sec-sub-banner {
       padding-bottom: 100px;
@@ -371,11 +345,9 @@
       background: #fff;
       border: 1px solid var(--border-wood);
       border-radius: 6px;
-      padding: 40px;
       position: relative;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       overflow: hidden;
     }
 
@@ -387,6 +359,7 @@
       width: 6px;
       height: 100%;
       background: var(--gold);
+      z-index: 10;
     }
 
     .feature-banner-box.recruit::before {
@@ -415,6 +388,7 @@
       font-size: 0.9rem;
       font-weight: 700;
       border-radius: 4px;
+      margin-top: auto;
     }
 
     .banner-action-btn:hover {
@@ -488,7 +462,44 @@
       padding-top: 24px;
     }
 
-    /* モバイルレスポンシブ */
+    /* 施工案内カード ボタン（PC/スマホ対応） */
+    .service-btn-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 12px !important;
+      width: 100% !important;
+      margin-top: 24px !important;
+    }
+
+    .service-split-btn {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background: #faf8f4 !important;
+      border: 1px solid var(--border-wood) !important;
+      border-radius: 4px !important;
+      padding: 12px 14px !important;
+      text-decoration: none !important;
+      color: var(--deep-sumi) !important;
+      font-size: 0.88rem !important;
+      font-weight: 700 !important;
+      box-sizing: border-box !important;
+      transition: all 0.2s ease !important;
+      text-align: center !important;
+    }
+
+    .service-split-btn:hover {
+      background: var(--primary-red) !important;
+      color: #fff !important;
+      border-color: var(--primary-red) !important;
+    }
+
+    .service-split-btn .btn-text {
+      display: inline-block;
+      line-height: 1.3;
+    }
+
+    /* レスポンシブ（ブレイクポイント） */
     @media (max-width: 900px) {
       .menu-toggle {
         display: block;
@@ -542,95 +553,36 @@
       .services-grid, .banner-grid {
         grid-template-columns: 1fr;
       }
+
+      .sec-services {
+        padding: 50px 0 30px !important;
+      }
+
+      .services-grid {
+        gap: 24px !important;
+      }
+
+      .sec-sub-banner {
+        padding-top: 10px !important;
+        padding-bottom: 50px !important;
+      }
     }
 
-/* ===================================================
-       施工案内カード ボタン（PC/スマホ完全対応）
-       =================================================== */
-    .service-btn-grid {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
-      gap: 12px !important;
-      width: 100% !important;
-      margin-top: 24px !important;
-    }
-
-    /* PC版：枠線付きの綺麗な横並びボタン */
-    .service-split-btn {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 6px !important;
-      background: #faf8f4 !important;
-      border: 1px solid var(--border-wood) !important;
-      border-radius: 4px !important;
-      padding: 12px 14px !important;
-      text-decoration: none !important;
-      color: var(--deep-sumi) !important;
-      font-size: 0.88rem !important;
-      font-weight: 700 !important;
-      box-sizing: border-box !important;
-      transition: all 0.2s ease !important;
-    }
-
-    .service-split-btn:hover {
-      background: var(--primary-red) !important;
-      color: #fff !important;
-      border-color: var(--primary-red) !important;
-    }
-
-    .service-split-btn .btn-text {
-      display: inline-block;
-      line-height: 1.3;
-    }
-
-    .service-split-btn .btn-arrow {
-      display: inline-block;
-      line-height: 1;
-      font-size: 0.95rem;
-    }
-
-    /* スマホ版（600px以下）：文字の下に矢印を揃えて配置 */
     @media (max-width: 600px) {
       .service-btn-grid {
         gap: 8px !important;
       }
 
       .service-split-btn {
-        flex-direction: column !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        padding: 12px 6px 10px !important;
-        min-height: 96px !important;
-        text-align: center !important;
+        padding: 12px 6px !important;
+        min-height: 60px !important;
       }
 
       .service-split-btn .btn-text {
         font-size: 0.82rem !important;
         line-height: 1.4 !important;
       }
-
-      .service-split-btn .btn-arrow {
-        margin-top: auto !important;
-        padding-top: 4px;
-        font-size: 1.05rem !important;
-      }
     }
-
-	@media (max-width: 900px){
-	.sec-services {
-	 padding: 50px 0 30px !important;
-	}
-
-	.services-grid {
-	 gap: 24px !important;
-	}
-
-	.sec-sub-banner {
-	 padding-top: 10px !important;
-	 padding-bottom: 50px !important;
-	}
-	}
   </style>
 </head>
 <body>
@@ -713,7 +665,7 @@
             <p>私たち「朝陽」が何よりも大切にしているもの。それは、<strong>careful work ― 丁寧な仕事</strong>です。</p>
             <p style="margin-top: 16px;">
               内装・外装・外構・エクステリア。<br>
-              住まいを構成する一つひとつの空間と真摯に向き合い、美しさだけではなく、心地よさ、機能性、そして永く安心して暮らせる品質を追求しています。
+              住まいを構成する一つひとつの空間と真摯に向き合い、美しさだけではなく、心地よさ、機能性、フォーカスされた品質を追求しています。
             </p>
           </div>
 
@@ -758,16 +710,14 @@
               </p>
             </div>
             <!-- 下層ページへのタブ切替導線 -->
-          <div class="service-btn-grid">
-          <a href="flooring/materials.html" class="service-split-btn">
-            <span class="btn-text">フローリング建材</span>
- 
-          </a>
-          <a href="flooring/service.html" class="service-split-btn">
-            <span class="btn-text">フローリング施工案内</span>
-
-          </a>
-        </div>
+            <div class="service-btn-grid">
+              <a href="flooring/materials.html" class="service-split-btn">
+                <span class="btn-text">フローリング建材</span>
+              </a>
+              <a href="flooring/service.html" class="service-split-btn">
+                <span class="btn-text">フローリング施工案内</span>
+              </a>
+            </div>
           </div>
         </article>
 
@@ -778,32 +728,32 @@
             <div>
               <h3 class="service-card-title">壁紙リフォーム</h3>
               <p class="service-card-desc">
-サンゲツとの提携により、上質な空間づくりにふさわしい、多彩な壁紙をご提案いたします。洗練されたデザインや素材感にこだわった壁紙をはじめ、和モダン、ホテルライク、落ち着きのある上質なデザインまで、豊富なラインナップからお選びいただけます。お部屋の雰囲気やインテリア、ご希望のイメージに合わせて、一邸一邸にふさわしい壁紙をご案内。豊富な選択肢と確かな品質で、住まいにさらなる上質さと特別感を演出いたします。            </div>
+                サンゲツとの提携により、上質な空間づくりにふさわしい、多彩な壁紙をご提案いたします。洗練されたデザインや素材感にこだわった壁紙をはじめ、和モダン、ホテルライク、落ち着きのある上質なデザインまで、豊富なラインナップからお選びいただけます。お部屋の雰囲気やインテリア、ご希望のイメージに合わせて、一邸一邸にふさわしい壁紙をご案内。豊富な選択肢と確かな品質で、住まいにさらなる上質さと特別感を演出いたします。
+              </p>
+            </div>
             <!-- 下層ページへのタブ切替導線 -->
             <div class="service-btn-grid">
-          <a href="wallpaper/materials.html" class="service-split-btn">
-            <span class="btn-text">壁紙建材</span>
-
-          </a>
-          <a href="wallpaper/service.html" class="service-split-btn">
-            <span class="btn-text">壁紙施工案内</span>
-
-          </a>
-        </div>
+              <a href="wallpaper/materials.html" class="service-split-btn">
+                <span class="btn-text">壁紙建材</span>
+              </a>
+              <a href="wallpaper/service.html" class="service-split-btn">
+                <span class="btn-text">壁紙施工案内</span>
+              </a>
+            </div>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-<!-- ================= 4. 概算見積り・採用情報バナー ================= -->
+  <!-- ================= 4. 概算見積り・採用情報バナー ================= -->
   <section class="sec-sub-banner">
     <div class="container">
       <div class="banner-grid">
         <!-- 施工見積りカード -->
-        <article class="feature-banner-box" style="padding: 0 !important; overflow: hidden; background: #fff; border: 1px solid var(--border-wood); border-radius: 6px; display: flex; flex-direction: column;">
-          <div class="banner-img-wrap" style="width: 100%; height: 180px !important; overflow: hidden; background-color: #faf6f0;">
-            <img src="image/home/mitsumori.jpg" alt="施工見積りシミュレーション" class="banner-photo" style="width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center !important; display: block;">
+        <article class="feature-banner-box">
+          <div class="banner-img-wrap" style="width: 100%; height: 180px; overflow: hidden; background-color: #faf6f0;">
+            <img src="image/home/mitsumori.jpg" alt="施工見積りシミュレーション" class="banner-photo" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
           </div>
           <div class="banner-content" style="padding: 24px; display: flex; flex-direction: column; flex: 1;">
             <p class="sec-title-en">SIMULATION</p>
@@ -811,27 +761,28 @@
             <p class="banner-desc">
               お部屋の広さ（㎡）とご希望の資材・施工プランを選択するだけで、概算の工事費用を即座に自動計算いたします。
             </p>
-            <a href="estimate.html" class="banner-action-btn">概算見積りを試す </a>
+            <a href="estimate.html" class="banner-action-btn">概算見積りを試す</a>
           </div>
         </article>
 
         <!-- 採用情報カード -->
-        <article class="feature-banner-box recruit" style="padding: 0 !important; overflow: hidden; background: #fff; border: 1px solid var(--border-wood); border-radius: 6px; display: flex; flex-direction: column;">
-          <div class="banner-img-wrap" style="width: 100%; height: 180px !important; overflow: hidden; background-color: #faf6f0;">
-            <img src="image/home/saiyou.jpg" alt="採用情報" class="banner-photo" style="width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center !important; display: block;">
+        <article class="feature-banner-box recruit">
+          <div class="banner-img-wrap" style="width: 100%; height: 180px; overflow: hidden; background-color: #faf6f0;">
+            <img src="image/home/saiyou.jpg" alt="採用情報" class="banner-photo" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
           </div>
           <div class="banner-content" style="padding: 24px; display: flex; flex-direction: column; flex: 1;">
             <p class="sec-title-en" style="color: var(--primary-red);">RECRUIT</p>
-            <h3 class="banner-title">採用情報（現場スタッフ募集）</h3>
+            <h3 class="banner-title">採用情報</h3>
             <p class="banner-desc">
               「丁寧な仕事」を共に追求する施工スタッフを募集しています。未経験者歓迎・研修制度あり。確かな技術が身につく職場です。
             </p>
-            <a href="recruit.html" class="banner-action-btn">募集要項を見る </a>
+            <a href="recruit.html" class="banner-action-btn">募集要項を見る</a>
           </div>
         </article>
       </div>
     </div>
   </section>
+
   <!-- ================= フッター ================= -->
   <footer>
     <div class="container">
@@ -839,16 +790,14 @@
         <div class="footer-brand">
           <h4>朝陽 - ASAHI -</h4>
           <address class="footer-address">
-             〒104-0061<br>
+            〒104-0061<br>
             東京都中央区銀座一丁目22番11号 銀座大竹ビジデンス2階<br>
-
             TEL: 050-1784-2312 / 直通: 090-5806-5361<br>
             MAIL: asahi.20241122@gmail.com
           </address>
         </div>
         <div class="footer-nav">
           <div class="footer-nav-col">
-
             <h5>施工・案内</h5>
             <ul>
               <li><a href="flooring/materials.html">フローリング建材</a></li>
