@@ -492,6 +492,10 @@ footer {
 }
 
 /* ---------------------------------------------------
+
+
+
+
    ★ スマホ版（画面幅 600px 以下）余白・自動高さ・カード幅完全調整
    --------------------------------------------------- */
 @media screen and (max-width: 600px) {
@@ -543,4 +547,97 @@ footer {
     margin-right: 0 !important;
     margin-bottom: 2px;
   }
+}
+
+
+/* --- 会社概要テーブル：見出し（th）のレスポンシブ改行制御 --- */
+
+/* PC表示時：屋号・社名を1行で並べる */
+.company-table-th span {
+  display: inline-block;
+}
+
+/* スマホ表示時（768px以下）：テーブルのレイアウトと見出し改行の調整 */
+@media (max-width: 768px) {
+  /* 屋号・社名をきれいな2行に折り返す指定 */
+  .company-table-th span {
+    display: block !important;
+  }
+
+  /* 画面幅が狭い端末でテーブル幅を最適化（見出し列が必要以上に広がらないように指定） */
+  .company-table-th {
+    width: 30% !important;
+    white-space: nowrap;
+  }
+}
+
+/* カード全体の設定 */
+.card {
+  max-width: 640px; /* PCでの最大幅 */
+  width: 100%;       /* スマホサイズに合わせて伸縮 */
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #a32222; /* 左側の赤ライン */
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* ヘッダー画像領域の設定 */
+.card-header {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* アスペクト比（縦横比）を固定 */
+  overflow: hidden;
+}
+
+.card-header .header-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* 枠に合わせて綺麗にトリミング表示 */
+  display: block;
+}
+
+/* カード本文領域の設定 */
+.card-body {
+  padding: 32px 24px;
+}
+
+.sub-title {
+  color: #a32222;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.main-title {
+  font-size: 24px;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #555555;
+  margin-bottom: 24px;
+}
+
+/* ボタン設定 */
+.btn {
+  display: inline-block;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #333333;
 }

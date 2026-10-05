@@ -4,9 +4,198 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>概算お見積り計算 | 朝陽 - ASAHI</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=Zen+Old+Mincho:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-red: #a61c24;
+      --deep-sumi: #181514;
+      --charcoal: #2c2724;
+      --washi-bg: #f7f3ec;
+      --border-wood: #dfd7ca;
+      --gold: #b38b4d;
+      --text-sub: #5e574f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Zen Old Mincho', 'Shippori Mincho', serif;
+      background-color: var(--washi-bg);
+      color: var(--deep-sumi);
+      line-height: 1.8;
+      letter-spacing: 0.05em;
+      word-break: break-word;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 共通ヘッダー */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(247, 243, 236, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-wood);
+      z-index: 1000;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .brand-logo-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .global-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 10px 0;
+      display: inline-block;
+      color: var(--deep-sumi);
+    }
+
+    .nav-link:hover {
+      color: var(--primary-red);
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      border: 1px solid var(--border-wood);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      min-width: 180px;
+      list-style: none;
+      border-radius: 4px;
+      padding: 8px 0;
+    }
+
+    .nav-item:hover .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 18px;
+      font-size: 0.88rem;
+      color: var(--charcoal);
+    }
+
+    .dropdown-menu a:hover {
+      background: #faf6f0;
+      color: var(--primary-red);
+    }
+
+    .header-cta-btn {
+      background: var(--primary-red);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .header-cta-btn:hover {
+      opacity: 0.9;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--deep-sumi);
+    }
+
+    /* ページヘッダーバナー */
+    .page-header-banner {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      padding: 80px 0;
+      color: #fff;
+      text-align: center;
+    }
+
+    .page-header-banner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(24, 21, 20, 0.6);
+      z-index: 1;
+    }
+
+    .page-header-banner .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-header-sub {
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .page-header-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+    }
+
+    /* 見積もりカード */
     .estimate-box {
       background: #fff;
       border: 1px solid var(--border-wood);
@@ -16,6 +205,13 @@
       margin: 0 auto 60px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     }
+
+    @media (max-width: 768px) {
+      .estimate-box {
+        padding: 24px 16px;
+      }
+    }
+
     .form-group { margin-bottom: 24px; }
     .form-label { display: block; font-weight: 700; font-size: 0.95rem; margin-bottom: 8px; color: var(--deep-sumi); }
     .form-control {
@@ -28,11 +224,13 @@
       font-family: inherit;
       color: var(--deep-sumi);
       outline: none;
+      box-sizing: border-box;
     }
     .form-control:focus { border-color: var(--primary-red); }
     .input-unit-wrap { position: relative; display: flex; align-items: center; }
     .input-unit-wrap input { padding-right: 40px; }
     .input-unit-wrap .unit { position: absolute; right: 14px; color: var(--text-sub); font-weight: 700; }
+    
     .result-display {
       background-color: #faf5ee;
       border: 2px solid #dfcfb9;
@@ -60,6 +258,117 @@
       line-height: 1.8;
     }
     .caution-box strong { color: var(--deep-sumi); display: block; margin-bottom: 6px; }
+
+    /* 共通フッター */
+    footer {
+      background: #252220;
+      color: #eae5de;
+      padding: 80px 0 30px;
+      margin-top: 100px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-brand h4 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 12px;
+      font-family: 'Shippori Mincho', serif;
+    }
+
+    .footer-address {
+      font-style: normal;
+      font-size: 0.9rem;
+      line-height: 2;
+      color: #b0a9a2;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 40px;
+    }
+
+    .footer-nav-col h5 {
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 6px;
+    }
+
+    .footer-nav-col ul {
+      list-style: none;
+    }
+
+    .footer-nav-col li {
+      margin-bottom: 10px;
+    }
+
+    .footer-nav-col a {
+      font-size: 0.88rem;
+      color: #b0a9a2;
+    }
+
+    .footer-nav-col a:hover {
+      color: #fff;
+    }
+
+    .copyright {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #777;
+      border-top: 1px solid #383431;
+      padding-top: 24px;
+    }
+
+    /* レスポンシブナビゲーション */
+    @media (max-width: 900px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .global-nav {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        border-bottom: 1px solid var(--border-wood);
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .global-nav.active {
+        display: flex;
+      }
+
+      .nav-list {
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+      }
+
+      .nav-item {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+      }
+
+      .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border: none;
+        background: #faf8f4;
+        display: block;
+        padding-left: 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -70,7 +379,7 @@
       <a href="index.html">
         <img src="image/home/logo.png" alt="朝陽 ASAHI" class="brand-logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'48\'><text x=\'10\' y=\'32\' font-size=\'24\' font-family=\'serif\' fill=\'%23181514\'>朝陽</text></svg>'">
       </a>
-      <button class="menu-toggle" id="menuToggle">☰</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="メニュー開閉">☰</button>
       <nav class="global-nav" id="globalNav">
         <ul class="nav-list">
           <li class="nav-item"><a href="about.html" class="nav-link">会社概要</a></li>
@@ -163,7 +472,7 @@
         <p style="font-size: 0.8rem; color: #888; margin-top: 6px;">※（資材単価 ＋ 工賃単価）× 施工面積</p>
       </div>
 
-      <!-- 注意事項（文面追加・修正版） -->
+      <!-- 注意事項 -->
       <div class="caution-box">
         <strong>【お見積りシミュレーションに関するご留意事項】</strong>
         <ul style="padding-left: 20px;">
@@ -186,16 +495,15 @@
     </div>
   </main>
 
-  <!-- フッター（完全版） -->
+  <!-- フッター -->
   <footer>
     <div class="container">
       <div class="footer-inner">
         <div class="footer-brand">
           <h4>朝陽 - ASAHI -</h4>
           <address class="footer-address">
-           〒104-0061<br>
+            〒104-0061<br>
             東京都中央区銀座一丁目22番11号 銀座大竹ビジデンス2階<br>
-
             TEL: 050-1784-2312 / 直通: 090-5806-5361<br>
             MAIL: asahi.20241122@gmail.com
           </address>
@@ -225,8 +533,17 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
   <script>
+    // モバイルメニュー開閉処理
+    const toggleBtn = document.getElementById('menuToggle');
+    const globalNav = document.getElementById('globalNav');
+
+    if (toggleBtn && globalNav) {
+      toggleBtn.addEventListener('click', () => {
+        globalNav.classList.toggle('active');
+      });
+    }
+
     // 見積もり計算ロジック
     const areaSize = document.getElementById('area-size');
     const simMaterial = document.getElementById('sim-material');

@@ -4,9 +4,283 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>壁紙建材一覧 | 朝陽 - ASAHI</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=Zen+Old+Mincho:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-red: #a61c24;
+      --deep-sumi: #181514;
+      --charcoal: #2c2724;
+      --washi-bg: #f7f3ec;
+      --border-wood: #dfd7ca;
+      --gold: #b38b4d;
+      --text-sub: #5e574f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Zen Old Mincho', 'Shippori Mincho', serif;
+      background-color: var(--washi-bg);
+      color: var(--deep-sumi);
+      line-height: 1.8;
+      letter-spacing: 0.05em;
+      word-break: break-word;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 共通ヘッダー */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(247, 243, 236, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-wood);
+      z-index: 1000;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .brand-logo-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .global-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 10px 0;
+      display: inline-block;
+      color: var(--deep-sumi);
+    }
+
+    .nav-link:hover {
+      color: var(--primary-red);
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      border: 1px solid var(--border-wood);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      min-width: 180px;
+      list-style: none;
+      border-radius: 4px;
+      padding: 8px 0;
+    }
+
+    .nav-item:hover .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 18px;
+      font-size: 0.88rem;
+      color: var(--charcoal);
+    }
+
+    .dropdown-menu a:hover {
+      background: #faf6f0;
+      color: var(--primary-red);
+    }
+
+    .header-cta-btn {
+      background: var(--primary-red);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .header-cta-btn:hover {
+      opacity: 0.9;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--deep-sumi);
+    }
+
+    /* ページヘッダーバナー */
+    .page-header-banner {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      padding: 80px 0;
+      color: #fff;
+      text-align: center;
+    }
+
+    .page-header-banner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(24, 21, 20, 0.6);
+      z-index: 1;
+    }
+
+    .page-header-banner .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-header-sub {
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .page-header-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+    }
+
+    /* カテゴリタブ */
+    .category-tab-container {
+      margin: 40px 0 20px;
+    }
+
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 12px 28px;
+      background: #fff;
+      border: 1px solid var(--border-wood);
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--deep-sumi);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--primary-red);
+      color: var(--primary-red);
+    }
+
+    .tab-btn.active {
+      background: var(--primary-red);
+      color: #fff;
+      border-color: var(--primary-red);
+    }
+
+    /* 建材カードパーツ */
+    .material-card {
+      background: #fff;
+      border: 1px solid var(--border-wood);
+      border-radius: 6px;
+      padding: 28px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+    }
+
+    .mat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--washi-bg);
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .mat-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--deep-sumi);
+    }
+
+    .mat-price-tag {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary-red);
+    }
+
+    .mat-badge-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .mat-grade-badge {
+      font-size: 0.78rem;
+      background: #faf6f0;
+      color: var(--gold);
+      border: 1px solid var(--border-wood);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+    }
+
     /* 2枚並び画像ギャラリー用スタイル */
     .wallpaper-img-grid {
       display: grid;
@@ -73,6 +347,117 @@
 
     .partner-catalog-btn:hover {
       opacity: 0.88;
+    }
+
+    /* 共通フッター */
+    footer {
+      background: #252220;
+      color: #eae5de;
+      padding: 80px 0 30px;
+      margin-top: 80px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-brand h4 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 12px;
+      font-family: 'Shippori Mincho', serif;
+    }
+
+    .footer-address {
+      font-style: normal;
+      font-size: 0.9rem;
+      line-height: 2;
+      color: #b0a9a2;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 40px;
+    }
+
+    .footer-nav-col h5 {
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 6px;
+    }
+
+    .footer-nav-col ul {
+      list-style: none;
+    }
+
+    .footer-nav-col li {
+      margin-bottom: 10px;
+    }
+
+    .footer-nav-col a {
+      font-size: 0.88rem;
+      color: #b0a9a2;
+    }
+
+    .footer-nav-col a:hover {
+      color: #fff;
+    }
+
+    .copyright {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #777;
+      border-top: 1px solid #383431;
+      padding-top: 24px;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 900px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .global-nav {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        border-bottom: 1px solid var(--border-wood);
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .global-nav.active {
+        display: flex;
+      }
+
+      .nav-list {
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+      }
+
+      .nav-item {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+      }
+
+      .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border: none;
+        background: #faf8f4;
+        display: block;
+        padding-left: 20px;
+      }
     }
 
     @media (max-width: 600px) {
@@ -274,23 +659,19 @@
       <h3 style="font-size: 1.25rem; color: var(--deep-sumi); margin-bottom: 12px; font-weight: 700;">
         サンゲツとの連携で実現する、ワンランク上の空間づくり
       </h3>
-      <p style="color: var(--charcoal); font-size: 0.92rem; line-height: 1.85; margin-bottom: 6px;">
-        当社では、国内を代表するインテリアメーカー「サンゲツ」との連携体制を活かし、住宅・店舗・各種施設の内装工事において、デザイン性と品質を追求        した空間づくりを行っています。</p>
-
- 壁紙・床材をはじめとする豊富なラインアップの中から、建物のコンセプトやお客様のご要望に合わせて最適な商材をご提案。材料選定から施工までを一貫して考えることで、単なる「内装工事」にとどまらな           い、完成度の高い空間をご提供します。</p>
-
-サンゲツの多彩な商品力と、当社が培ってきた建築・施工の技術力。</p>
-
-その両方を活かせることが、私たちの大きな強みです。</p>
-
-一般住宅から高級住宅、店舗、オフィス、施設まで、素材・デザイン・施工品質にこだわり、「選ばれる空間」を形にしていきます。</p>
-
-サンゲツ × 建築・施工のプロフェッショナル。</p>
-
-内装材を選ぶだけではなく、その素材の魅力を最大限に引き出す施工まで。</p>
-私たちは、空間そのものの価値を高める建築を目指しています。<br>
-        別品番や特定メーカーのデザインをご希望の際は、サンゲツデジタルカタログよりご希望の品番をお選びいただき、お気軽にご相談ください。</p>
-※その他メーカーの物も取り扱いがございます。
+      <p style="color: var(--charcoal); font-size: 0.92rem; line-height: 1.85; margin-bottom: 12px;">
+        当社では、国内を代表するインテリアメーカー「サンゲツ」との連携体制を活かし、住宅・店舗・各種施設の内装工事において、デザイン性と品質を追求した空間づくりを行っています。
+      </p>
+      <p style="color: var(--charcoal); font-size: 0.92rem; line-height: 1.85; margin-bottom: 12px;">
+        豊富なラインアップの中から、建物のコンセプトやお客様のご要望に合わせて最適な商材をご提案。材料選定から施工までを一貫して考えることで、単なる「内装工事」にとどまらない、完成度の高い空間をご提供します。
+      </p>
+      <p style="color: var(--charcoal); font-size: 0.92rem; line-height: 1.85; margin-bottom: 12px;">
+        サンゲツの多彩な商品力と、当社が培ってきた施工の技術力。その両方を活かせることが、私たちの大きな強みです。一般住宅から高級住宅、店舗、オフィス、施設まで、素材・デザイン・施工品質にこだわり、「選ばれる空間」を形にしていきます。
+      </p>
+      <p style="color: var(--charcoal); font-size: 0.92rem; line-height: 1.85; margin-bottom: 12px;">
+     
+        別品番や特定メーカーのデザインをご希望の際は、サンゲツデジタルカタログよりご希望の品番をお選びいただき、お気軽にご相談ください。<br>
+        <span style="font-size: 0.85rem; color: var(--text-sub);">※その他メーカーの物も取り扱いがございます。</span>
       </p>
       <a href="https://share.google/v1Us0CsmagbnQxPYU" target="_blank" rel="noopener noreferrer" class="partner-catalog-btn">
         提携先カタログを見る（外部サイト） →
@@ -306,9 +687,8 @@
         <div class="footer-brand">
           <h4>朝陽 - ASAHI -</h4>
           <address class="footer-address">
-             〒104-0061<br>
+            〒104-0061<br>
             東京都中央区銀座一丁目22番11号 銀座大竹ビジデンス2階<br>
-
             TEL: 050-1784-2312 / 直通: 090-5806-5361<br>
             MAIL: asahi.20241122@gmail.com
           </address>
@@ -338,6 +718,16 @@
     </div>
   </footer>
 
-  <script src="../js/main.js"></script>
+  <script>
+    // モバイルメニュー開閉処理
+    const toggleBtn = document.getElementById('menuToggle');
+    const globalNav = document.getElementById('globalNav');
+
+    if (toggleBtn && globalNav) {
+      toggleBtn.addEventListener('click', () => {
+        globalNav.classList.toggle('active');
+      });
+    }
+  </script>
 </body>
 </html>

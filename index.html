@@ -366,6 +366,22 @@
       background: var(--primary-red);
     }
 
+    /* 共通画像コンテナ（レスポンシブ崩れ防止） */
+    .banner-img-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9; /* スマホ・PC問わず16:9比率を維持 */
+      overflow: hidden;
+      background-color: #faf6f0;
+    }
+
+    .banner-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
     .banner-title {
       font-size: 1.45rem;
       font-family: 'Shippori Mincho', serif;
@@ -652,43 +668,51 @@
     </div>
   </section>
 
-  <!-- ================= 2. 会社理念（Philosophy） ================= -->
-  <section class="sec-philosophy">
-    <div class="container">
-      <div class="philo-wrapper">
-        <div class="philo-lead">
-          <p class="sec-title-en">PHILOSOPHY</p>
-          <h3>住まいに、新しい朝を。</h3>
-          <p class="philo-en">CAREFUL WORK, LASTING TRUST.</p>
-          
-          <div class="philo-text">
-            <p>私たち「朝陽」が何よりも大切にしているもの。それは、<strong>careful work ― 丁寧な仕事</strong>です。</p>
-            <p style="margin-top: 16px;">
-              内装・外装・外構・エクステリア。<br>
-              住まいを構成する一つひとつの空間と真摯に向き合い、美しさだけではなく、心地よさ、機能性、フォーカスされた品質を追求しています。
-            </p>
-          </div>
-
-          <div class="philo-quote">
-            <strong>QUALITY IN EVERY DETAIL. ― 細部にこそ品質を。</strong><br>
-            目に映る仕上がりの美しさはもちろん、完成すれば見えなくなる部分にまで決して手を抜かない。<br>
-            素材を知り、納まりを考え、一つひとつの工程を丁寧に積み重ねていく。
-          </div>
-
-          <div class="philo-text">
-            <p>
-              お客様の想いに寄り添い、その言葉の先にある理想まで汲み取り、プロフェッショナルとして最善の施工を追求する。<br>
-              工事の大小にかかわらず、一つの仕事、一つの住まいに誠実に向き合う。
-            </p>
-            <p style="margin-top: 16px;">
-              <strong>BUILT WITH CARE. EARNED WITH TRUST. ― 丁寧につくり、信頼を築く。</strong><br>
-              「朝陽に頼んでよかった」「また朝陽に任せたい」その言葉にふさわしい仕事を一件一件積み重ねていくことが、私たちの使命です。
-            </p>
-          </div>
-        </div>
+  <!-- ================= 2. 会社理念セクション ================= -->
+  <main class="container" style="padding-top: 60px;">
+    <section style="margin-bottom: 70px;">
+      <div style="border-left: 5px solid var(--primary-red); padding-left: 16px; margin-bottom: 24px;">
+        <p style="font-size: 0.85rem; letter-spacing: 0.25em; color: var(--gold); font-weight: 700;">PHILOSOPHY</p>
+        <h2 style="font-size: 2rem; font-family: 'Shippori Mincho', serif; color: var(--deep-sumi);">
+          丁寧を、当たり前以上に。
+        </h2>
       </div>
-    </div>
-  </section>
+
+      <div style="font-size: 1rem; line-height: 2.2; color: var(--charcoal); margin-bottom: 30px;">
+        <p><strong>朝陽 carefulwork</strong></p>
+        <p style="margin-top: 8px;">
+          美しさは、細部に宿る。<br>
+          信頼は、丁寧な仕事から生まれる。
+        </p>
+        <p style="margin-top: 16px;">
+          私たち carefulwork 朝陽 は、<br>
+          内装・外装・外構・エクステリアを通じて、<br>
+          住まいと空間に新たな価値を創造します。
+        </p>
+        <p style="margin-top: 16px;">
+          見えるところは、より美しく。<br>
+          見えないところは、より丁寧に。
+        </p>
+        <p style="margin-top: 16px;">
+          一つひとつの工程に誠実に向き合い、<br>
+          素材、納まり、仕上がり、その先の暮らしまで考える。
+        </p>
+        <p style="margin-top: 16px;">
+          ただ施工するのではなく、<br>
+          「ここに頼んでよかった」と思える仕事を残すこと。
+        </p>
+        <p style="margin-top: 16px;">
+          朝陽が新しい一日を照らすように、<br>
+          私たちは丁寧な仕事で、<br>
+          人と住まいのこれからを照らしていきます。
+        </p>
+        <p style="margin-top: 24px;">
+          <strong>carefulwork 朝陽</strong><br>
+          丁寧な仕事に、美しさと誇りを。
+        </p>
+      </div>
+    </section>
+  </main>
 
   <!-- ================= 3. 施工案内（Services） ================= -->
   <section class="sec-services">
@@ -728,7 +752,7 @@
             <div>
               <h3 class="service-card-title">壁紙リフォーム</h3>
               <p class="service-card-desc">
-                サンゲツとの提携により、上質な空間づくりにふさわしい、多彩な壁紙をご提案いたします。洗練されたデザインや素材感にこだわった壁紙をはじめ、和モダン、ホテルライク、落ち着きのある上質なデザインまで、豊富なラインナップからお選びいただけます。お部屋の雰囲気やインテリア、ご希望のイメージに合わせて、一邸一邸にふさわしい壁紙をご案内。豊富な選択肢と確かな品質で、住まいにさらなる上質さと特別感を演出いたします。
+                国内シェア日本一のサンゲツによる圧倒的なデザインの自由度と、当社が培った確かな施工技術。サンプル選定はもちろん、公式サイトからお選びいただいたお好みの壁紙も、ご指定に沿って高品質に施工し、理想の空間を実現します。
               </p>
             </div>
             <!-- 下層ページへのタブ切替導線 -->
@@ -752,8 +776,8 @@
       <div class="banner-grid">
         <!-- 施工見積りカード -->
         <article class="feature-banner-box">
-          <div class="banner-img-wrap" style="width: 100%; height: 180px; overflow: hidden; background-color: #faf6f0;">
-            <img src="image/home/mitsumori.jpg" alt="施工見積りシミュレーション" class="banner-photo" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
+          <div class="banner-img-wrap">
+            <img src="image/home/mitsumori.jpg" alt="施工見積りシミュレーション" class="banner-photo">
           </div>
           <div class="banner-content" style="padding: 24px; display: flex; flex-direction: column; flex: 1;">
             <p class="sec-title-en">SIMULATION</p>
@@ -765,10 +789,10 @@
           </div>
         </article>
 
-        <!-- 採用情報カード -->
+<!-- 採用情報カード -->
         <article class="feature-banner-box recruit">
-          <div class="banner-img-wrap" style="width: 100%; height: 180px; overflow: hidden; background-color: #faf6f0;">
-            <img src="image/home/saiyou.jpg" alt="採用情報" class="banner-photo" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
+          <div class="banner-img-wrap">
+            <img src="image/home/saiyou.jpg" alt="採用情報" class="banner-photo">
           </div>
           <div class="banner-content" style="padding: 24px; display: flex; flex-direction: column; flex: 1;">
             <p class="sec-title-en" style="color: var(--primary-red);">RECRUIT</p>
@@ -782,8 +806,7 @@
       </div>
     </div>
   </section>
-
-  <!-- ================= フッター ================= -->
+  <!-- ================= 5. フッター ================= -->
   <footer>
     <div class="container">
       <div class="footer-inner">
@@ -798,7 +821,7 @@
         </div>
         <div class="footer-nav">
           <div class="footer-nav-col">
-            <h5>施工・案内</h5>
+            <h5>施工案内</h5>
             <ul>
               <li><a href="flooring/materials.html">フローリング建材</a></li>
               <li><a href="flooring/service.html">フローリング施工案内</a></li>
@@ -812,7 +835,7 @@
               <li><a href="about.html">会社概要・理念</a></li>
               <li><a href="estimate.html">概算見積り</a></li>
               <li><a href="recruit.html">採用情報</a></li>
-              <li><a href="contact.html">お問い合わせ・LINE</a></li>
+              <li><a href="contact.html">お問い合わせ</a></li>
             </ul>
           </div>
         </div>
