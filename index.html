@@ -587,6 +587,233 @@
         font-size: 1.05rem !important;
       }
     }
+
+/* ===================================================
+   施工案内カード ボタン表示（PC/スマホ対応）
+   =================================================== */
+
+.service-btn-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+  width: 100% !important;
+  margin-top: 24px;
+}
+
+.service-split-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px;
+  background: #faf8f4 !important;
+  border: 1px solid var(--border-wood) !important;
+  border-radius: 4px !important;
+  padding: 12px 14px !important;
+  text-decoration: none !important;
+  color: var(--deep-sumi) !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+  height: auto !important;
+  min-height: 48px; /* 押しやすい高さを確保 */
+}
+
+.service-split-btn:hover {
+  background: #f0ebe0 !important;
+}
+
+.service-split-btn .btn-text {
+  display: inline-block;
+  line-height: 1.3;
+}
+
+/* ===================================================
+   レスポンシブ共通（900px以下：スマホ・タブレット）
+   =================================================== */
+@media (max-width: 900px) {
+  .menu-toggle { display: block; }
+  
+  .global-nav {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid var(--border-wood);
+    flex-direction: column;
+    padding: 20px;
+  }
+  .global-nav.active { display: flex; }
+  
+  .nav-list { flex-direction: column; width: 100%; gap: 0; }
+  .nav-item { width: 100%; border-bottom: 1px solid #eee; }
+  
+  .nav-link {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .dropdown-menu {
+    display: none !important;
+    position: static !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #faf8f4 !important;
+    padding-left: 18px !important;
+    margin-top: 4px;
+  }
+
+  .nav-item.is-open .dropdown-menu {
+    display: block !important;
+  }
+
+  .category-tabs { flex-direction: column; gap: 8px; }
+  .tab-btn { text-align: center; }
+  .labor-sub-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+
+/* スマホ表示時（768px以下） */
+@media (max-width: 768px) {
+  .addr-part-3 {
+    display: block !important;
+    margin-right: 0 !important;
+    margin-bottom: 2px;
+  }
+
+  .company-table-th span {
+    display: block !important;
+  }
+
+  .company-table-th {
+    width: 30% !important;
+    white-space: nowrap;
+  }
+}
+
+/* スマホ表示時（600px以下）★空欄防止の重要調整★ */
+@media screen and (max-width: 600px) {
+  .service-btn-grid {
+    gap: 8px !important;
+  }
+
+  .service-btn-grid a.service-split-btn,
+  .service-split-btn {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: auto !important;
+    min-height: 48px !important; /* 空白を消しつつタップしやすい高さに最適化 */
+    max-height: none !important;
+    padding: 10px 6px !important;
+    text-align: center !important;
+  }
+
+  .service-split-btn .btn-text {
+    font-size: 0.85rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .service-split-btn .btn-arrow {
+    display: none !important;
+  }
+
+  .banner-content {
+    padding: 16px !important;
+  }
+}
+
+/* --- その他のカード基本設定 --- */
+.addr-part-3 {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.company-table-th span {
+  display: inline-block;
+}
+
+.card {
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #a32222;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.card-header {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.card-header .header-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-body {
+  padding: 32px 24px;
+}
+
+.sub-title {
+  color: #a32222;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.main-title {
+  font-size: 24px;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #555555;
+  margin-bottom: 24px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #333333;
+}
+
+.partner-catalog-box {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 32px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid var(--accent-teal) !important;
+}
+
+
   </style>
 </head>
 <body>
