@@ -131,7 +131,8 @@
   <header>
     <div class="container header-inner">
       <a href="index.html">
-        <img src="image/home/logo.png" alt="朝陽 ASAHI" class="brand-logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'48\'><text x=\'10\' y=\'32\' font-size=\'24\' font-family=\'serif\' fill=\'%23181514\'>朝陽</text></svg>'">
+        <!-- ロゴ画像にキャッシュ対策用IDを付与 -->
+        <img src="image/home/logo.png" alt="朝陽 ASAHI" class="brand-logo-img" id="cacheLogo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'48\'><text x=\'10\' y=\'32\' font-size=\'24\' font-family=\'serif\' fill=\'%23181514\'>朝陽</text></svg>'">
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="メニュー開閉">☰</button>
       <nav class="global-nav" id="globalNav">
@@ -253,9 +254,8 @@
         <div class="footer-brand">
           <h4>朝陽 - ASAHI -</h4>
           <address class="footer-address">
-             〒104-0061<br>
+            〒104-0061<br>
             東京都中央区銀座一丁目22番11号 銀座大竹ビジデンス2階<br>
-
             TEL: 050-1784-2312 / 直通: 090-5806-5361<br>
             MAIL: asahi.20241122@gmail.com
           </address>
@@ -288,6 +288,13 @@
   <script src="js/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // 1. ロゴ画像のキャッシュ強制クリア（常に最新画像を読み込む処理）
+      const logo = document.getElementById('cacheLogo');
+      if (logo) {
+        logo.src = logo.src.split('?')[0] + '?v=' + new Date().getTime();
+      }
+
+      // 2. 概算見積りデータの自動入力処理
       const estimateData = sessionStorage.getItem('estimate_data');
       const remarkField = document.getElementById('contact-remarks');
       if (estimateData && remarkField) {

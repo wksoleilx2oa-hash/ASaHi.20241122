@@ -13,7 +13,7 @@
   <header>
     <div class="container header-inner">
       <a href="../index.html">
-        <img src="../image/home/logo.png" alt="朝陽 ASAHI" class="brand-logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'48\'><text x=\'10\' y=\'32\' font-size=\'24\' font-family=\'serif\' fill=\'%23181514\'>朝陽</text></svg>'">
+        <img src="../image/home/logo.png" alt="朝陽 ASAHI" class="brand-logo-img" id="cacheLogo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'48\'><text x=\'10\' y=\'32\' font-size=\'24\' font-family=\'serif\' fill=\'%23181514\'>朝陽</text></svg>'">
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="メニュー開閉">☰</button>
       <nav class="global-nav" id="globalNav">
@@ -62,7 +62,7 @@
   <main class="container" style="padding-top: 20px;">
     <!-- 項目1 -->
     <div class="labor-block">
-      <h3 style="font-size: 1.3rem; margin-bottom: 16px; border-left: 4px solid var(--primary-red); padding-left: 10px; color: var(--deep-sumi);">
+      <h3 style="font-size: 1.3rem; margin-bottom: 16px; border-left: 4px solid var(--Navy); padding-left: 10px; color: var(--deep-sumi);">
         項目1：フローリング張り（桧巾木60mm込み）
       </h3>
 
@@ -79,7 +79,7 @@
 
     <!-- 項目2 -->
     <div class="labor-block">
-      <h3 style="font-size: 1.3rem; margin-bottom: 16px; border-left: 4px solid var(--primary-red); padding-left: 10px; color: var(--deep-sumi);">
+      <h3 style="font-size: 1.3rem; margin-bottom: 16px; border-left: 4px solid var(--Navy); padding-left: 10px; color: var(--deep-sumi);">
         項目2：畳からフローリング変更（桧巾木60mm込み）
       </h3>
 
@@ -89,11 +89,12 @@
       </div>
     </div>
 
-    <!-- 注意事項枠（文面修正版） -->
+    <!-- 注意事項枠 -->
     <div style="background: #faf6f0; border: 1px solid var(--border-wood); border-left: 4px solid var(--gold); padding: 20px 24px; border-radius: 4px; font-size: 0.92rem; line-height: 1.9; margin-top: 30px;">
       <strong style="color: var(--deep-sumi); display: block; margin-bottom: 6px; font-size: 0.98rem;">【工賃に関するご案内事項】</strong>
       ・産廃処分費および諸経費(10％〜20％)は別途発生いたします。<br>
-      ・作業状況や予測不可能な事態により、作業内容、作業日程、項目、数量、金額などが変更になる場合がございます(変更になる場合は事前確認なしでは行いません)。
+      ・作業状況や予測不可能な事態により、作業内容、作業日程、項目、数量、金額などが変更になる場合がございます(変更になる場合は事前確認なしでは行いません)。<br>
+      ※掲載されている金額は2026年10月1日時点の価格です。
     </div>
   </main>
 
@@ -104,9 +105,8 @@
         <div class="footer-brand">
           <h4>朝陽 - ASAHI -</h4>
           <address class="footer-address">
-           〒104-0061<br>
+            〒104-0061<br>
             東京都中央区銀座一丁目22番11号 銀座大竹ビジデンス2階<br>
-
             TEL: 050-1784-2312 / 直通: 090-5806-5361<br>
             MAIL: asahi.20241122@gmail.com
           </address>
@@ -137,5 +137,14 @@
   </footer>
 
   <script src="../js/main.js"></script>
+  <!-- ロゴ画像キャッシュ即時更新用処理 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const logo = document.getElementById('cacheLogo');
+      if (logo) {
+        logo.src = logo.src.split('?')[0] + '?v=' + new Date().getTime();
+      }
+    });
+  </script>
 </body>
 </html>

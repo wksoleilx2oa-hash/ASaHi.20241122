@@ -26,7 +26,7 @@
 
     body {
       font-family: 'Zen Old Mincho', 'Shippori Mincho', serif;
-      background-color: var(--washi-bg);
+      background-color: var(#fffff);
       color: var(--deep-sumi);
       line-height: 1.8;
       letter-spacing: 0.05em;
@@ -197,6 +197,7 @@
 
     /* カテゴリタブ */
     .category-tab-container {
+background: var(--white)
       margin: 40px 0 20px;
     }
 
@@ -207,11 +208,12 @@
       flex-wrap: wrap;
     }
 
+    /* ▼ 修正点: 丸み（30px）を他のセクションと合わせた長方形（4px）に変更 */
     .tab-btn {
       padding: 12px 28px;
       background: #fff;
       border: 1px solid var(--border-wood);
-      border-radius: 30px;
+      border-radius: 4px;
       font-weight: 700;
       font-size: 0.95rem;
       color: var(--deep-sumi);
@@ -271,13 +273,14 @@
       flex-wrap: wrap;
     }
 
+    /* ▼ 修正点: バッジの丸み（20px）も 4px に変更して統一感を持たせる場合 */
     .mat-grade-badge {
       font-size: 0.78rem;
       background: #faf6f0;
       color: var(--gold);
       border: 1px solid var(--border-wood);
       padding: 4px 12px;
-      border-radius: 20px;
+      border-radius: 4px;
       font-weight: 700;
     }
 
@@ -508,14 +511,13 @@
     </div>
   </header>
 
-  <!-- ページ見出しバナー -->
-  <div class="page-header-banner" style="background-image: url('../image/home/wallpaper.jpg');">
+<!-- ページ見出しバナー -->
+  <div class="page-header-banner" style="background-image: url('../image/home/wallpaper.jpg'); border-bottom: 3px solid #b38b4d !important;">
     <div class="container">
       <p class="page-header-sub">WALLPAPER MATERIALS</p>
       <h1 class="page-header-title">壁紙建材一覧</h1>
     </div>
   </div>
-
   <!-- タブ切り替えボタン -->
   <div class="category-tab-container">
     <div class="container">
@@ -669,7 +671,6 @@
         サンゲツの多彩な商品力と、当社が培ってきた施工の技術力。その両方を活かせることが、私たちの大きな強みです。一般住宅から高級住宅、店舗、オフィス、施設まで、素材・デザイン・施工品質にこだわり、「選ばれる空間」を形にしていきます。
       </p>
       <p style="color: var(--charcoal); font-size: 0.92rem; line-height: 1.85; margin-bottom: 12px;">
-     
         別品番や特定メーカーのデザインをご希望の際は、サンゲツデジタルカタログよりご希望の品番をお選びいただき、お気軽にご相談ください。<br>
         <span style="font-size: 0.85rem; color: var(--text-sub);">※その他メーカーの物も取り扱いがございます。</span>
       </p>
@@ -719,7 +720,6 @@
   </footer>
 
   <script>
-    // モバイルメニュー開閉処理
     const toggleBtn = document.getElementById('menuToggle');
     const globalNav = document.getElementById('globalNav');
 

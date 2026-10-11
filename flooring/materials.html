@@ -13,7 +13,7 @@
   <header>
     <div class="container header-inner">
       <a href="../index.html">
-        <img src="../image/home/logo.png" alt="朝陽 ASAHI" class="brand-logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'48\'><text x=\'10\' y=\'32\' font-size=\'24\' font-family=\'serif\' fill=\'%23181514\'>朝陽</text></svg>'">
+        <img src="../image/home/logo.png" alt="朝陽 ASAHI" class="brand-logo-img" id="cacheLogo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'48\'><text x=\'10\' y=\'32\' font-size=\'24\' font-family=\'serif\' fill=\'%23181514\'>朝陽</text></svg>'">
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="メニュー開閉">☰</button>
       <nav class="global-nav" id="globalNav">
@@ -64,7 +64,7 @@
 
     <!-- ================= 1. 吉野桧（床用フローリング） ================= -->
     <section style="margin-bottom: 60px;">
-      <h2 style="font-size: 1.5rem; border-left: 5px solid var(--primary-red); padding-left: 14px; margin-bottom: 24px; color: var(--deep-sumi);">
+      <h2 style="font-size: 1.5rem; border-left: 5px solid var(--Navy); padding-left: 14px; margin-bottom: 24px; color: var(--deep-sumi);">
         1. 吉野桧（床用フローリング）
       </h2>
 
@@ -122,7 +122,7 @@
 
     <!-- ================= 2. 吉野桧（壁・天井パネリング/羽目板） ================= -->
     <section style="margin-bottom: 60px;">
-      <h2 style="font-size: 1.5rem; border-left: 5px solid var(--primary-red); padding-left: 14px; margin-bottom: 24px; color: var(--deep-sumi);">
+      <h2 style="font-size: 1.5rem; border-left: 5px solid var(--Navy); padding-left: 14px; margin-bottom: 24px; color: var(--deep-sumi);">
         2. 吉野桧（壁・天井パネリング／羽目板）
       </h2>
 
@@ -180,7 +180,7 @@
 
     <!-- ================= 3. 吉野桧（床暖房兼用フローリング） ================= -->
     <section style="margin-bottom: 60px;">
-      <h2 style="font-size: 1.5rem; border-left: 5px solid var(--primary-red); padding-left: 14px; margin-bottom: 24px; color: var(--deep-sumi);">
+      <h2 style="font-size: 1.5rem; border-left: 5px solid var(--Navy); padding-left: 14px; margin-bottom: 24px; color: var(--deep-sumi);">
         3. 吉野桧（床暖房兼用フローリング）
       </h2>
 
@@ -223,7 +223,7 @@
 
     <!-- ================= 4. 国産桧（四国・九州産等） ================= -->
     <section style="margin-bottom: 60px;">
-      <h2 style="font-size: 1.5rem; border-left: 5px solid var(--primary-red); padding-left: 14px; margin-bottom: 24px; color: var(--deep-sumi);">
+      <h2 style="font-size: 1.5rem; border-left: 5px solid var(--Navy); padding-left: 14px; margin-bottom: 24px; color: var(--deep-sumi);">
         4. 国産桧（四国・九州産等）
       </h2>
 
@@ -291,9 +291,7 @@
         <div class="footer-brand">
           <h4>朝陽 - ASAHI -</h4>
           <address class="footer-address">
-            〒104-0061<br>
-            東京都中央区銀座一丁目22番11号 銀座大竹ビジデンス2階<br>
-
+            〒104-0061 東京都中央区銀座一丁目22番11号 銀座大竹ビジデンス2階<br>
             TEL: 050-1784-2312 / 直通: 090-5806-5361<br>
             MAIL: asahi.20241122@gmail.com
           </address>
@@ -324,5 +322,15 @@
   </footer>
 
   <script src="../js/main.js"></script>
+  <script>
+    // ページアクセス時にロゴ画像のURLへタイムスタンプを付与してキャッシュを強制クリア
+    document.addEventListener('DOMContentLoaded', function() {
+      var logoImg = document.getElementById('cacheLogo');
+      if (logoImg) {
+        var baseSrc = logoImg.src.split('?')[0];
+        logoImg.src = baseSrc + '?v=' + new Date().getTime();
+      }
+    });
+  </script>
 </body>
 </html>

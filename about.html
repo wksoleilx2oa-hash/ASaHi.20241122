@@ -9,12 +9,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=Zen+Old+Mincho:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-red: #a61c24;
+      --primary-red: #c82333;
+      --silver: #C0C0C0;
+      --gold: #b38b4d;
       --deep-sumi: #181514;
       --charcoal: #2c2724;
       --washi-bg: #f7f3ec;
       --border-wood: #dfd7ca;
-      --gold: #b38b4d;
       --text-sub: #5e574f;
     }
 
@@ -327,7 +328,7 @@
   <header>
     <div class="container header-inner">
       <a href="index.html">
-        <img src="image/home/logo.png" alt="朝陽 ASAHI" class="brand-logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'48\'><text x=\'10\' y=\'32\' font-size=\'24\' font-family=\'serif\' fill=\'%23181514\'>朝陽</text></svg>'">
+        <img src="image/home/logo.png" alt="朝陽 ASAHI" class="brand-logo-img" id="siteLogo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'48\'><text x=\'10\' y=\'32\' font-size=\'24\' font-family=\'serif\' fill=\'%23181514\'>朝陽</text></svg>'">
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="メニュー開閉">☰</button>
       <nav class="global-nav" id="globalNav">
@@ -371,41 +372,43 @@
         <h2 style="font-size: 2rem; font-family: 'Shippori Mincho', serif; color: var(--deep-sumi);">
           丁寧を、当たり前以上に。
         </h2>
-        <p style="font-size: 0.9rem; color: var(--gold); letter-spacing: 0.15em; font-weight: 700; margin-top: 4px;">
-                      </div>
-
-      <div style="font-size: 1rem; line-height: 2.2; color: var(--charcoal); margin-bottom: 30px;">
-        <p><strong>朝陽 carefulwork</strong></p>
-        <p style="margin-top: 8px;">
-          美しさは、細部に宿る。<br>
-          信頼は、丁寧な仕事から生まれる。</p>
-        <p style="margin-top: 16px;">
-          私たち carefulwork 朝陽 は、<br>
-          内装・外装・外構・エクステリアを通じて、  </p>
-       住まいと空間に新たな価値を創造します。 </p>
       </div>
 
-        見えるところは、より美しく。<br>
-見えないところは、より丁寧に。</p>
+      <div style="font-size: 1rem; line-height: 2.2; color: var(--charcoal); margin-bottom: 30px;">
+        <p style="margin-top: 8px;">
+          美しさは、細部に宿る。<br>
+          信頼は、丁寧な仕事から生まれる。
+        </p>
         <p style="margin-top: 16px;">
-一つひとつの工程に誠実に向き合い、<br>
-素材、納まり、仕上がり、その先の暮らしまで考える。<br>
-                  <p style="margin-top: 16px;">
-ただ施工するのではなく、<br>
-「ここに頼んでよかった」と思える仕事を残すこと。
-        </p><p style="margin-top: 16px;">
-
-朝陽が新しい一日を照らすように、</p>
-私たちは丁寧な仕事で、</p>
-人と住まいのこれからを照らしていきます。 </p>
-      </div>　<p style="margin-top: 16px;">
-
-carefulwork 朝陽</p>
-丁寧な仕事に、美しさと誇りを。
+          私たち carefulwork 朝陽 は、<br>
+          内装・外装・外構・エクステリアを通じて、<br>
+          住まいと空間に新たな価値を創造します。
+        </p>
+        <p style="margin-top: 16px;">
+          見えるところは、より美しく。<br>
+          見えないところは、より丁寧に。
+        </p>
+        <p style="margin-top: 16px;">
+          一つひとつの工程に誠実に向き合い、<br>
+          素材、納まり、仕上がり、その先の暮らしまで考える。
+        </p>
+        <p style="margin-top: 16px;">
+          ただ施工するのではなく、<br>
+          「ここに頼んでよかった」と思える仕事を残すこと。
+        </p>
+        <p style="margin-top: 16px;">
+          朝陽が新しい一日を照らすように、<br>
+          私たちは丁寧な仕事で、<br>
+          人と住まいのこれからを照らしていきます。
+        </p>
+        <p style="margin-top: 24px;">
+          <strong>carefulwork 朝陽</strong><br>
+          丁寧な仕事に、美しさと誇りを。
+        </p>
       </div>
     </section>
 
-<!-- 会社概要テーブル -->
+    <!-- 会社概要テーブル -->
     <section>
       <div style="border-left: 5px solid var(--primary-red); padding-left: 16px; margin-bottom: 24px;">
         <p style="font-size: 0.85rem; letter-spacing: 0.25em; color: var(--gold); font-weight: 700;">COMPANY</p>
@@ -453,6 +456,7 @@ carefulwork 朝陽</p>
       </table>
     </section>
   </main>
+
   <!-- フッター -->
   <footer>
     <div class="container">
@@ -496,9 +500,19 @@ carefulwork 朝陽</p>
     const toggleBtn = document.getElementById('menuToggle');
     const globalNav = document.getElementById('globalNav');
 
-    toggleBtn.addEventListener('click', () => {
-      globalNav.classList.toggle('active');
-    });
+    if (toggleBtn && globalNav) {
+      toggleBtn.addEventListener('click', () => {
+        globalNav.classList.toggle('active');
+      });
+    }
+
+    // ロゴ画像のキャッシュ自動クリア処理（毎回最新画像をロード）
+    const logoImg = document.getElementById('siteLogo');
+    if (logoImg) {
+      const timeStamp = new Date().getTime();
+      const cleanSrc = logoImg.src.split('?')[0];
+      logoImg.src = cleanSrc + '?v=' + timeStamp;
+    }
   </script>
 </body>
 </html>

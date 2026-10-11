@@ -249,7 +249,7 @@
     .caution-box {
       background: #fff;
       border: 1px solid #dfd2c0;
-      border-left: 4px solid var(--primary-red);
+      border-left: 4px solid #b38b4d;
       border-radius: 4px;
       padding: 18px;
       margin-bottom: 24px;
@@ -343,10 +343,11 @@
         border-bottom: 1px solid var(--border-wood);
         flex-direction: column;
         padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
       }
 
       .global-nav.active {
-        display: flex;
+        display: flex !important;
       }
 
       .nav-list {
@@ -377,7 +378,7 @@
   <header>
     <div class="container header-inner">
       <a href="index.html">
-        <img src="image/home/logo.png" alt="朝陽 ASAHI" class="brand-logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'48\'><text x=\'10\' y=\'32\' font-size=\'24\' font-family=\'serif\' fill=\'%23181514\'>朝陽</text></svg>'">
+        <img src="image/home/logo.png" alt="朝陽 ASAHI" class="brand-logo-img" id="headerLogo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'48\'><text x=\'10\' y=\'32\' font-size=\'24\' font-family=\'serif\' fill=\'%23181514\'>朝陽</text></svg>'">
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="メニュー開閉">☰</button>
       <nav class="global-nav" id="globalNav">
@@ -534,45 +535,59 @@
   </footer>
 
   <script>
-    // モバイルメニュー開閉処理
-    const toggleBtn = document.getElementById('menuToggle');
-    const globalNav = document.getElementById('globalNav');
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. ロゴ画像の自動キャッシュクリア処理
+      const logoImg = document.getElementById('headerLogo');
+      if (logoImg) {
+        logoImg.src = logoImg.src.split('?')[0] + '?v=' + new Date().getTime();
+      }
 
-    if (toggleBtn && globalNav) {
-      toggleBtn.addEventListener('click', () => {
-        globalNav.classList.toggle('active');
-      });
-    }
+      // 2. モバイルメニュー開閉処理
+      const toggleBtn = document.getElementById('menuToggle');
+      const globalNav = document.getElementById('globalNav');
 
-    // 見積もり計算ロジック
-    const areaSize = document.getElementById('area-size');
-    const simMaterial = document.getElementById('sim-material');
-    const simLabor = document.getElementById('sim-labor');
-    const calcTotalDisplay = document.getElementById('calc-total-display');
+      if (toggleBtn && globalNav) {
+        toggleBtn.addEventListener('click', () => {
+          globalNav.classList.toggle('active');
+        });
+      }
 
-    function updateEstimate() {
-      const sqm = parseFloat(areaSize.value) || 0;
-      const matPerSqm = parseInt(simMaterial.value, 10) || 0;
-      const laborPerSqm = parseInt(simLabor.value, 10) || 0;
+      // 3. 見積もり計算ロジック
+      const areaSize = document.getElementById('area-size');
+      const simMaterial = document.getElementById('sim-material');
+      const simLabor = document.getElementById('sim-labor');
+      const calcTotalDisplay = document.getElementById('calc-total-display');
 
-      const rawTotal = (matPerSqm + laborPerSqm) * sqm;
-      const total = Math.floor(rawTotal);
-      calcTotalDisplay.textContent = '¥' + total.toLocaleString();
-    }
+      function updateEstimate() {
+        const sqm = parseFloat(areaSize.value) || 0;
+        const matPerSqm = parseInt(simMaterial.value, 10) || 0;
+        const laborPerSqm = parseInt(simLabor.value, 10) || 0;
 
-    if (areaSize) areaSize.addEventListener('input', updateEstimate);
-    if (simMaterial) simMaterial.addEventListener('change', updateEstimate);
-    if (simLabor) simLabor.addEventListener('change', updateEstimate);
+        const rawTotal = (matPerSqm + laborPerSqm) * sqm;
+        const total = Math.floor(rawTotal);
+        calcTotalDisplay.textContent = '¥' + total.toLocaleString();
+      }
 
-    updateEstimate();
+      if (areaSize) areaSize.addEventListener('input', updateEstimate);
+      if (simMaterial) simMaterial.addEventListener('change', updateEstimate);
+      if (simLabor) simLabor.addEventListener('change', updateEstimate);
 
-    // お問い合わせページへ内容を渡して移動
+      updateEstimate();
+    });
+
+    // 4. お問い合わせページへ内容を渡して移動
     function transferToContactPage() {
-      const totalStr = calcTotalDisplay.textContent;
-      const sizeStr = `${areaSize.value}㎡`;
-      const materialName = simMaterial.options[simMaterial.selectedIndex].text;
-      const laborName = simLabor.options[simLabor.selectedIndex].text;
-      const remarks = document.getElementById('calc-remarks').value;
+      const areaSize = document.getElementById('area-size');
+      const simMaterial = document.getElementById('sim-material');
+      const simLabor = document.getElementById('sim-labor');
+      const calcTotalDisplay = document.getElementById('calc-total-display');
+      const calcRemarks = document.getElementById('calc-remarks');
+
+      const totalStr = calcTotalDisplay ? calcTotalDisplay.textContent : '¥0';
+      const sizeStr = areaSize ? `${areaSize.value}㎡` : '0㎡';
+      const materialName = simMaterial ? simMaterial.options[simMaterial.selectedIndex].text : '';
+      const laborName = simLabor ? simLabor.options[simLabor.selectedIndex].text : '';
+      const remarks = calcRemarks ? calcRemarks.value : '';
 
       const text = `【シミュレーション内容】\n・施工面積: ${sizeStr}\n・選択資材: ${materialName}\n・施工プラン: ${laborName}\n・概算費用: ${totalStr} (税込)\n\n【その他ご要望】\n${remarks}`;
 

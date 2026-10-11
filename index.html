@@ -8,13 +8,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=Zen+Old+Mincho:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    /* ===================================================
+        カラーパレット定義（カラーコードで自由に変更可能）
+        =================================================== */
     :root {
-      --primary-red: #a61c24;
+      /* 基本ブランドカラー */
+      --primary-red: #a61c24;        /* 朝陽レッド（採用ライン・理念など） */
+      --gold: #b38b4d;               /* 吉野ゴールド（見積りラインなど） */
+      
+      /* 施工案内カード用のカラーライン */
+      --Navy: #000080;               /* ネイビー（参照用） */
+      --accent-wood: #000080;        /* ネイビー（フローリングカード用・縦線反映用） */
+      --accent-teal: #2c7a7b;        /* 藍碧・和青緑（壁紙リフォームカード用） */
+
+      /* テキスト・背景・枠線 */
       --deep-sumi: #181514;
       --charcoal: #2c2724;
       --washi-bg: #f7f3ec;
       --border-wood: #dfd7ca;
-      --gold: #b38b4d;
       --text-sub: #5e574f;
     }
 
@@ -117,6 +128,7 @@
       list-style: none;
       border-radius: 4px;
       padding: 8px 0;
+      z-index: 1100;
     }
 
     .nav-item:hover .dropdown-menu {
@@ -158,7 +170,7 @@
       color: var(--deep-sumi);
     }
 
-    /* 1. ヒーローセクション（全画面大型ビジュアル） */
+    /* 1. ヒーローセクション */
     .hero-full {
       position: relative;
       height: calc(100vh - 80px);
@@ -213,54 +225,11 @@
       color: #eae5de;
     }
 
-    /* 2. 会社理念（Philosophy） */
-    .sec-philosophy {
-      padding: 100px 0;
-      background: #fff;
-    }
-
-    .philo-wrapper {
-      display: flex;
-      gap: 60px;
-      align-items: flex-start;
-    }
-
-    .philo-lead {
-      flex: 1;
-    }
-
-    .philo-lead h3 {
-      font-size: 2.2rem;
-      font-family: 'Shippori Mincho', serif;
-      line-height: 1.5;
-      color: var(--deep-sumi);
-      margin-bottom: 20px;
+    /* 2. 会社理念セクション見出し */
+    .philo-heading {
       border-left: 5px solid var(--primary-red);
       padding-left: 16px;
-    }
-
-    .philo-en {
-      font-size: 0.85rem;
-      letter-spacing: 0.25em;
-      color: var(--gold);
-      margin-bottom: 30px;
-      font-weight: 700;
-    }
-
-    .philo-text {
-      color: var(--charcoal);
-      font-size: 1rem;
-      line-height: 2.2;
-    }
-
-    .philo-quote {
-      margin: 40px 0;
-      padding: 24px;
-      background: #faf7f2;
-      border-left: 3px solid var(--gold);
-      font-size: 1.05rem;
-      line-height: 2;
-      color: var(--deep-sumi);
+      margin-bottom: 24px;
     }
 
     /* 3. 施工案内（Services） */
@@ -293,6 +262,7 @@
       gap: 40px;
     }
 
+    /* 施工カード（左端縦ライン対応） */
     .service-card {
       background: #fff;
       border: 1px solid var(--border-wood);
@@ -301,6 +271,27 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
       display: flex;
       flex-direction: column;
+      position: relative;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      z-index: 10;
+    }
+
+    /* フローリングカードのライン（ネイビー） */
+    .service-card.flooring-card::before {
+      background: var(--accent-wood);
+    }
+
+    /* 壁紙リフォームカードのライン（藍碧・和青緑） */
+    .service-card.wallpaper-card::before {
+      background: var(--accent-teal);
     }
 
     .service-card-img {
@@ -330,6 +321,43 @@
       margin-bottom: 24px;
     }
 
+    /* 施工案内カード ボタン（PC/スマホ完全対応） */
+    .service-btn-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 12px !important;
+      width: 100% !important;
+      margin-top: 24px !important;
+    }
+
+    .service-split-btn {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background: #faf8f4 !important;
+      border: 1px solid var(--border-wood) !important;
+      border-radius: 4px !important;
+      padding: 12px 14px !important;
+      text-decoration: none !important;
+      color: var(--deep-sumi) !important;
+      font-size: 0.88rem !important;
+      font-weight: 700 !important;
+      box-sizing: border-box !important;
+      transition: all 0.2s ease !important;
+      text-align: center !important;
+    }
+
+    .service-split-btn:hover {
+      background: var(--primary-red) !important;
+      color: #fff !important;
+      border-color: var(--primary-red) !important;
+    }
+
+    .service-split-btn .btn-text {
+      display: inline-block;
+      line-height: 1.3;
+    }
+
     /* 4. 見積もり＆採用バナーグリッド */
     .sec-sub-banner {
       padding-bottom: 100px;
@@ -351,6 +379,7 @@
       overflow: hidden;
     }
 
+    /* 見積りカードのライン（ゴールド） */
     .feature-banner-box::before {
       content: "";
       position: absolute;
@@ -362,24 +391,9 @@
       z-index: 10;
     }
 
+    /* 採用カードのライン（レッド） */
     .feature-banner-box.recruit::before {
       background: var(--primary-red);
-    }
-
-    /* 共通画像コンテナ（レスポンシブ崩れ防止） */
-    .banner-img-wrap {
-      width: 100%;
-      aspect-ratio: 16 / 9; /* スマホ・PC問わず16:9比率を維持 */
-      overflow: hidden;
-      background-color: #faf6f0;
-    }
-
-    .banner-photo {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
     }
 
     .banner-title {
@@ -478,44 +492,9 @@
       padding-top: 24px;
     }
 
-    /* 施工案内カード ボタン（PC/スマホ対応） */
-    .service-btn-grid {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
-      gap: 12px !important;
-      width: 100% !important;
-      margin-top: 24px !important;
-    }
-
-    .service-split-btn {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      background: #faf8f4 !important;
-      border: 1px solid var(--border-wood) !important;
-      border-radius: 4px !important;
-      padding: 12px 14px !important;
-      text-decoration: none !important;
-      color: var(--deep-sumi) !important;
-      font-size: 0.88rem !important;
-      font-weight: 700 !important;
-      box-sizing: border-box !important;
-      transition: all 0.2s ease !important;
-      text-align: center !important;
-    }
-
-    .service-split-btn:hover {
-      background: var(--primary-red) !important;
-      color: #fff !important;
-      border-color: var(--primary-red) !important;
-    }
-
-    .service-split-btn .btn-text {
-      display: inline-block;
-      line-height: 1.3;
-    }
-
-    /* レスポンシブ（ブレイクポイント） */
+    /* ===================================================
+        レスポンシブ（スマホ・タブレット対応）
+        =================================================== */
     @media (max-width: 900px) {
       .menu-toggle {
         display: block;
@@ -534,7 +513,7 @@
       }
 
       .global-nav.active {
-        display: flex;
+        display: flex !important;
       }
 
       .nav-list {
@@ -548,6 +527,10 @@
         border-bottom: 1px solid #eee;
       }
 
+      .nav-item:hover .dropdown-menu {
+        display: block;
+      }
+
       .dropdown-menu {
         position: static;
         box-shadow: none;
@@ -559,11 +542,6 @@
 
       .hero-catch-main {
         font-size: 2.2rem;
-      }
-
-      .philo-wrapper {
-        flex-direction: column;
-        gap: 30px;
       }
 
       .services-grid, .banner-grid {
@@ -590,13 +568,23 @@
       }
 
       .service-split-btn {
-        padding: 12px 6px !important;
-        min-height: 60px !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 12px 6px 10px !important;
+        min-height: 96px !important;
+        text-align: center !important;
       }
 
       .service-split-btn .btn-text {
         font-size: 0.82rem !important;
         line-height: 1.4 !important;
+      }
+
+      .service-split-btn .btn-arrow {
+        margin-top: auto !important;
+        padding-top: 4px;
+        font-size: 1.05rem !important;
       }
     }
   </style>
@@ -606,23 +594,19 @@
   <!-- ================= ヘッダー ================= -->
   <header>
     <div class="container header-inner">
-      <!-- ブランドロゴ -->
       <a href="index.html" class="brand-logo-wrap">
-        <img src="image/home/logo.png" alt="朝陽 ASAHI" class="brand-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <img src="image/home/logo.png" alt="朝陽 ASAHI" class="brand-logo-img" id="cacheLogo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
         <span class="brand-logo-fallback" style="display: none; font-family: 'Shippori Mincho', serif; font-size: 1.8rem; font-weight: 800; color: var(--deep-sumi); letter-spacing: 0.1em;">朝陽</span>
       </a>
 
-      <!-- モバイルメニュー開閉ボタン -->
       <button class="menu-toggle" id="menuToggle" aria-label="メニュー開閉">☰</button>
 
-      <!-- グローバルナビゲーション -->
       <nav class="global-nav" id="globalNav">
         <ul class="nav-list">
           <li class="nav-item">
             <a href="about.html" class="nav-link">会社概要</a>
           </li>
           
-          <!-- フローリング ドロップダウン -->
           <li class="nav-item">
             <a href="flooring/materials.html" class="nav-link">フローリング ▾</a>
             <ul class="dropdown-menu">
@@ -631,7 +615,6 @@
             </ul>
           </li>
 
-          <!-- 壁紙リフォーム ドロップダウン -->
           <li class="nav-item">
             <a href="wallpaper/materials.html" class="nav-link">壁紙リフォーム ▾</a>
             <ul class="dropdown-menu">
@@ -653,9 +636,8 @@
     </div>
   </header>
 
-  <!-- ================= 1. ヒーローセクション（ファーストビュー全画面表示） ================= -->
+  <!-- ================= 1. ヒーローセクション ================= -->
   <section class="hero-full">
-    <!-- メイン背景写真 -->
     <img src="image/home/hero.jpg" alt="施工現場と職人たち" class="hero-bg-img">
     
     <div class="hero-content">
@@ -671,7 +653,7 @@
   <!-- ================= 2. 会社理念セクション ================= -->
   <main class="container" style="padding-top: 60px;">
     <section style="margin-bottom: 70px;">
-      <div style="border-left: 5px solid var(--primary-red); padding-left: 16px; margin-bottom: 24px;">
+      <div class="philo-heading">
         <p style="font-size: 0.85rem; letter-spacing: 0.25em; color: var(--gold); font-weight: 700;">PHILOSOPHY</p>
         <h2 style="font-size: 2rem; font-family: 'Shippori Mincho', serif; color: var(--deep-sumi);">
           丁寧を、当たり前以上に。
@@ -723,8 +705,8 @@
       </div>
 
       <div class="services-grid">
-        <!-- フローリング -->
-        <article class="service-card">
+        <!-- フローリング施工カード -->
+        <article class="service-card flooring-card">
           <img src="image/home/flooring.jpg" alt="フローリング施工" class="service-card-img">
           <div class="service-card-body">
             <div>
@@ -733,20 +715,22 @@
                 奈良県産吉野桧の一枚もの無垢材や、床暖房対応材など上質な木材を厳選。畳からの変更や既存床の重ね張りまで、確かな技術で端正に施工します。
               </p>
             </div>
-            <!-- 下層ページへのタブ切替導線 -->
+            
             <div class="service-btn-grid">
               <a href="flooring/materials.html" class="service-split-btn">
                 <span class="btn-text">フローリング建材</span>
+                <span class="btn-arrow"></span>
               </a>
               <a href="flooring/service.html" class="service-split-btn">
                 <span class="btn-text">フローリング施工案内</span>
+                <span class="btn-arrow"></span>
               </a>
             </div>
           </div>
         </article>
 
-        <!-- 壁紙リフォーム -->
-        <article class="service-card">
+        <!-- 壁紙リフォームカード -->
+        <article class="service-card wallpaper-card">
           <img src="image/home/wallpaper.jpg" alt="壁紙・クロス施工" class="service-card-img">
           <div class="service-card-body">
             <div>
@@ -755,13 +739,15 @@
                 国内シェア日本一のサンゲツによる圧倒的なデザインの自由度と、当社が培った確かな施工技術。サンプル選定はもちろん、公式サイトからお選びいただいたお好みの壁紙も、ご指定に沿って高品質に施工し、理想の空間を実現します。
               </p>
             </div>
-            <!-- 下層ページへのタブ切替導線 -->
+            
             <div class="service-btn-grid">
               <a href="wallpaper/materials.html" class="service-split-btn">
                 <span class="btn-text">壁紙建材</span>
+                <span class="btn-arrow"></span>
               </a>
               <a href="wallpaper/service.html" class="service-split-btn">
                 <span class="btn-text">壁紙施工案内</span>
+                <span class="btn-arrow"></span>
               </a>
             </div>
           </div>
@@ -776,8 +762,9 @@
       <div class="banner-grid">
         <!-- 施工見積りカード -->
         <article class="feature-banner-box">
-          <div class="banner-img-wrap">
-            <img src="image/home/mitsumori.jpg" alt="施工見積りシミュレーション" class="banner-photo">
+          <!-- ▼ 修正箇所: 高さを 250px に広げ、切り取られ方をマイルドに調整 -->
+          <div class="banner-img-wrap" style="width: 100%; height: 250px; overflow: hidden; background-color: #C0C0C0;">
+            <img src="image/home/mitsumori.jpg" alt="施工見積りシミュレーション" class="banner-photo" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
           </div>
           <div class="banner-content" style="padding: 24px; display: flex; flex-direction: column; flex: 1;">
             <p class="sec-title-en">SIMULATION</p>
@@ -789,24 +776,26 @@
           </div>
         </article>
 
-<!-- 採用情報カード -->
+        <!-- 採用情報カード -->
         <article class="feature-banner-box recruit">
-          <div class="banner-img-wrap">
-            <img src="image/home/saiyou.jpg" alt="採用情報" class="banner-photo">
+          <!-- ▼ 修正箇所: 高さを 250px に広げ、切り取られ方をマイルドに調整 -->
+          <div class="banner-img-wrap" style="width: 100%; height: 250px; overflow: hidden; background-color: #faf6f0;">
+            <img src="image/home/saiyou.jpg" alt="採用情報" class="banner-photo" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
           </div>
           <div class="banner-content" style="padding: 24px; display: flex; flex-direction: column; flex: 1;">
             <p class="sec-title-en" style="color: var(--primary-red);">RECRUIT</p>
             <h3 class="banner-title">採用情報</h3>
             <p class="banner-desc">
-              「丁寧な仕事」を共に追求する施工スタッフを募集しています。未経験者歓迎・研修制度あり。確かな技術が身につく職場です。
+              「丁寧な仕事」を共に追求する施工スタッフを募集しています。未経験者歓迎・研修制度あり。確かな技術が身につく環境です。
             </p>
-            <a href="recruit.html" class="banner-action-btn">募集要項を見る</a>
+            <a href="recruit.html" class="banner-action-btn">採用情報を見る</a>
           </div>
         </article>
       </div>
     </div>
   </section>
-  <!-- ================= 5. フッター ================= -->
+
+ <!-- フッター -->
   <footer>
     <div class="container">
       <div class="footer-inner">
@@ -849,9 +838,19 @@
     const toggleBtn = document.getElementById('menuToggle');
     const globalNav = document.getElementById('globalNav');
 
-    toggleBtn.addEventListener('click', () => {
-      globalNav.classList.toggle('active');
-    });
+    if (toggleBtn && globalNav) {
+      toggleBtn.addEventListener('click', () => {
+        globalNav.classList.toggle('active');
+      });
+    }
+
+    // ロゴ画像のキャッシュ自動クリア処理（毎回最新画像をロード）
+    const logoImg = document.getElementById('siteLogo');
+    if (logoImg) {
+      const timeStamp = new Date().getTime();
+      const cleanSrc = logoImg.src.split('?')[0];
+      logoImg.src = cleanSrc + '?v=' + timeStamp;
+    }
   </script>
 </body>
 </html>
